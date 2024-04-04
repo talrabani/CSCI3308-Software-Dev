@@ -1,7 +1,7 @@
 CREATE TABLE users (
     username varchar(50) PRIMARY KEY,
     password char(60) not null,
-    datetime_created DATETIME not null
+    datetime_created timestamp not null
 );
 
 CREATE TABLE sports (
@@ -20,7 +20,7 @@ CREATE TABLE bets (
     broker_id INTEGER not null,
     username varchar(50) not null,
     stake DECIMAL(10, 2) not null,
-    datetime DATETIME not null,
+    datetime timestamp not null,
     odds INTEGER not null,
     team varchar(50) not null,
     profit DECIMAL(10, 2) not null,
