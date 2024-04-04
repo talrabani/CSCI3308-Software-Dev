@@ -25,3 +25,6 @@ INSERT INTO TABLE sports (sport_name) VALUES (
 INSERT INTO TABLE sports (sport_name) VALUES (
     'UFC',
 );
+
+INSERT INTO TABLE users (username, password) VALUES (
+    'John Doe', 'johndoe')`;
