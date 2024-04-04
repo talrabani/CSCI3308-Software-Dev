@@ -65,7 +65,9 @@ const user = {
   datetime_created: undefined,
 };
 
-
+app.get('/', (req, res) => {
+  res.redirect('/login'); //this will call the /anotherRoute route in the API
+});
 
 app.get('/login', (req, res) => {
   res.render('pages/login');
