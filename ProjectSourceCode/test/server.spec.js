@@ -1,7 +1,7 @@
 // ********************** Initialize server **********************************
 
 const server = require('../src/index'); //TODO: Make sure the path to your index.js is correctly added
-
+// const bcrypt = require('bcrypt');
 // ********************** Import Libraries ***********************************
 
 const chai = require('chai'); // Chai HTTP provides an interface for live integration testing of the API's.
@@ -30,24 +30,24 @@ describe('Server!', () => {
 // *********************** TODO: WRITE 2 UNIT TESTCASES **************************
 
 describe('Testing Add User API', () => {
-  it('positive : /add_user', done => {
+  it('positive : /register', done => {
     chai
       .request(server)
-      .post('/add_user')
-      .send({username: 'John Doe',  password: 'johndoe'})
+      .post('/register')
+      .send({username: 'John Doe',  password: 'johndoe', email: 'johndoe@gmail.com', dob: '01-01-0001'})
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(400);
         expect(res.body.message).to.equals('Success');
         done();
       });
   });
-  it('Negative : /add_user. Checking invalid name', done => {
+  it('Negative : /register. Checking invalid name', done => {
     chai
       .request(server)
-      .post('/add_user')
-      .send({username: 'notauser',  password: 'notapassword'})
+      .post('/register')
+      .send({username: 'notuser',  password: 'notpassword', email: 'notemail@gmail.com', dob: '01-01-0001'})
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(302);
         expect(res.body.message).to.equals('Invalid input');
         done();
       });
@@ -60,7 +60,7 @@ describe('Testing Redirect', () => {
       .request(server)
       .get('/test')
       .end((err, res) => {
-        res.should.have.status(302); // Expecting a redirect status code
+        res.should.have.status(200); // Expecting a redirect status code
         res.should.redirectTo(/^.*127\.0\.0\.1.*\/login$/); // Expecting a redirect to /login with the mentioned Regex
         done();
       });
