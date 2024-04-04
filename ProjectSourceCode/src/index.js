@@ -6,6 +6,7 @@ const path = require('path');
 const pgp = require('pg-promise')();
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const bcrypt = require('bcrypt'); //  To hash passwords
 
 // -------------------------------------  APP CONFIG   ----------------------------------------------
 
