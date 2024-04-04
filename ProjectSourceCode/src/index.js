@@ -57,6 +57,22 @@ db.connect()
   });
 //-------------------------------------  ROUTES for register.hbs   ----------------------------------------------
 
+app.get('/register', (req, res) => {
+  res.render('pages/register');
+})
+
+app.post('/register', async (req, res) => {
+  const hash = await bcrypt.hash(req.body.password, 10);
+  db.none('INSERT INTO users(username, password) VALUES($1, $2)', [req.body.username, hash])
+      .then(() => {
+          console.log("Registered User")
+          res.redirect('login');
+      })
+      .catch(error => {
+          res.render('pages/register', { message: 'Error Registering User' });
+      });
+})
+
 
 // -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
@@ -65,17 +81,25 @@ const user = {
   datetime_created: undefined,
 };
 
+//-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
+
 app.get('/', (req, res) => {
   res.redirect('/register'); //this will call the /anotherRoute route in the API
 });
+
+//-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
+
+
+
 
 app.get('/login', (req, res) => {
   res.render('pages/login');
 });
 
-app.get('/register', (req, res) => {
-  res.render('pages/register');
-})
+
+
+
+
 
 
 // -------------------------------------  TEST ROUTE ----------------------------------------------
