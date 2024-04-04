@@ -66,12 +66,16 @@ const user = {
 };
 
 app.get('/', (req, res) => {
-  res.redirect('/login'); //this will call the /anotherRoute route in the API
+  res.redirect('/register'); //this will call the /anotherRoute route in the API
 });
 
 app.get('/login', (req, res) => {
   res.render('pages/login');
 });
+
+app.get('/register', (req, res) => {
+  res.render('pages/register');
+})
 
 
 // -------------------------------------  TEST ROUTE ----------------------------------------------
