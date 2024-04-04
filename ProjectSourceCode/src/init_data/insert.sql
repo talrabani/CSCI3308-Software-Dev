@@ -1,24 +1,27 @@
 INSERT INTO TABLE sports (sport_name) VALUES (
     'Football',
-    'Basketball',
-    'Baseball',
-    'Hockey',
-    'Soccer',
-    'Tennis',
-    'Golf',
-    'Boxing',
-    'UFC',
-    'Cricket');
+);
 
-INSERT INTO TABLE brokers (broker_name) VALUES (
-    'Bet365',
-    'William Hill',
-    'Betfair',
-    'Paddy Power',
-    'Ladbrokes',
-    'Betfred',
-    'Coral',
-    'Unibet',
-    '888sport',
-    'BetVictor',
-    'DraftKings');
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'Basketball',
+);
+
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'Baseball',
+);
+
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'Soccer',
+);
+
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'Hockey',
+);
+
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'Tennis',
+);
+
+INSERT INTO TABLE sports (sport_name) VALUES (
+    'UFC',
+);
