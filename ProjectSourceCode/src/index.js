@@ -56,6 +56,8 @@ db.connect()
     console.log('ERROR', error.message || error);
   });
 //-------------------------------------  ROUTES for register.hbs   ----------------------------------------------
+
+
 // -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
   username: undefined,
@@ -69,35 +71,16 @@ app.get('/login', (req, res) => {
   res.render('pages/login');
 });
 
-// Login submission
-app.post('/login', (req, res) => {
-  const email = req.body.email;
-  const username = req.body.username;
-  const query = 'select * from students where students.email = $1 LIMIT 1';
-  const values = [email];
 
-  // get the student_id based on the emailid
-  db.one(query, values)
-    .then(data => {
-      user.student_id = data.student_id;
-      user.username = username;
-      user.first_name = data.first_name;
-      user.last_name = data.last_name;
-      user.email = data.email;
-      user.year = data.year;
-      user.major = data.major;
-      user.degree = data.degree;
+// -------------------------------------  TEST ROUTE ----------------------------------------------
 
-      req.session.user = user;
-      req.session.save();
-
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.log(err);
-      res.redirect('/login');
-    });
+app.get('/welcome', (req, res) => {
+  res.json({status: 'success', message: 'Welcome!'});
 });
+
+// -------------------------------------  TEST ROUTE ----------------------------------------------
+
+
 
 // Authentication middleware.
 const auth = (req, res, next) => {
@@ -126,5 +109,5 @@ app.get('/logout', (req, res) => {
 
 // -------------------------------------  START THE SERVER   ----------------------------------------------
 
-app.listen(3000);
+module.exports = app.listen(3000);
 console.log('Server is listening on port 3000');
