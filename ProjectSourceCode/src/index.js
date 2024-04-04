@@ -63,7 +63,7 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
   const hash = await bcrypt.hash(req.body.password, 10);
-  db.none('INSERT INTO users(username, password) VALUES($1, $2)', [req.body.username, hash])
+  db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
       .then(() => {
           console.log("Registered User")
           res.redirect('login');
@@ -90,13 +90,9 @@ app.get('/', (req, res) => {
 //-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
 
 
-
-
 app.get('/login', (req, res) => {
   res.render('pages/login');
 });
-
-
 
 
 
