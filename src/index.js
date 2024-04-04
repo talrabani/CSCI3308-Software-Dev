@@ -55,7 +55,7 @@ db.connect()
   .catch(error => {
     console.log('ERROR', error.message || error);
   });
-
+//-------------------------------------  ROUTES for register.hbs   ----------------------------------------------
 // -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
   username: undefined,
