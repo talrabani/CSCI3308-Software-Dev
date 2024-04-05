@@ -61,28 +61,29 @@ db.connect()
 app.get('/register', (req, res) => {
   res.render('pages/register');
 })
-app.post('/register', async (req, res) => {
-  const hash = await bcrypt.hash(req.body.password, 10);
-  db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
-      .then(() => {
-          console.log("Registered User")
-          res.status(400).redirect('login');
-      })
-      .catch(error => {
-          res.status(302).render('pages/register', { message: 'Error Registering User' });
-      });
-})
 // app.post('/register', async (req, res) => {
 //   const hash = await bcrypt.hash(req.body.password, 10);
 //   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
 //       .then(() => {
 //           console.log("Registered User")
-//           res.status(400).send('<script>window.location.href="/login";</script>');
+          
+//           res.status(400).send('Success').redirect('login');
 //       })
 //       .catch(error => {
 //           res.status(302).render('pages/register', { message: 'Error Registering User' });
 //       });
 // })
+app.post('/register', async (req, res) => {
+  const hash = await bcrypt.hash(req.body.password, 10);
+  db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
+      .then(() => {
+          console.log("Registered User")
+          res.status(302)
+      })
+      .catch(error => {
+          res.status(302).render('pages/register', { message: 'Error Registering User' });
+      });
+})
 // -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
   username: undefined,
