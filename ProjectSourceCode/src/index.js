@@ -151,6 +151,10 @@ app.get('/sports' , async (req, res) => {
   res.render('pages/Sports/nfl');
 });
 
+app.get('/bets' , async (req, res) => {
+  res.render('pages/bets');
+});
+
 // -------------------------------------  TEST ROUTE ----------------------------------------------
 
 app.get('/welcome', (req, res) => {
