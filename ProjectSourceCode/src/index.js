@@ -61,28 +61,30 @@ db.connect()
 app.get('/register', (req, res) => {
   res.render('pages/register');
 })
-app.post('/register', async (req, res) => {
-  const hash = await bcrypt.hash(req.body.password, 10);
-  db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
-      .then(() => {
-          console.log("Registered User")
-          res.status(400).redirect('login');
-      })
-      .catch(error => {
-          res.status(302).render('pages/register', { message: 'Error Registering User' });
-      });
-})
 // app.post('/register', async (req, res) => {
 //   const hash = await bcrypt.hash(req.body.password, 10);
 //   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
 //       .then(() => {
 //           console.log("Registered User")
-//           res.status(400).send('<script>window.location.href="/login";</script>');
+          
+//           res.status(400).send('Success').redirect('login');
 //       })
 //       .catch(error => {
 //           res.status(302).render('pages/register', { message: 'Error Registering User' });
 //       });
 // })
+app.post('/register', async (req, res) => {
+  const hash = await bcrypt.hash(req.body.password, 10);
+  db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
+      .then(() => {
+          console.log("Registered User")
+          res.status(302)
+          //res.redirect('/login');
+      })
+      .catch(error => {
+          res.status(302).render('pages/register', { message: 'Error Registering User' });
+      });
+})
 // -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
   username: undefined,
@@ -103,9 +105,47 @@ app.get('/login', (req, res) => {
   res.render('pages/login');
 });
 
+app.post('/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
 
+  // Query to find user by username
+  const query = 'SELECT * FROM users WHERE username = $1 LIMIT 1';
+  const values = [username];
 
+  try {
+      // Retrieve user from the database
+      const user = await db.oneOrNone(query, values);
 
+      if (!user) {
+          // User not found, render login page with error message
+          return res.redirect('/register');
+      }
+
+      // Compare password
+      const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+
+      if (!passwordMatch) {
+          // Incorrect password, render login page with error message
+          return res.render('pages/login', { message: 'Incorrect password' });
+      }
+
+      // Save user in session
+      req.session.user = user;
+      req.session.save();
+
+      // Redirect to home page
+      res.redirect('/home');
+  } catch (err) {
+      // Error occurred, redirect to login page
+      console.log(err);
+      res.redirect('/login');
+  }
+});
+
+app.get('/home' , async (req, res) => {
+  res.render('pages/home');
+});
 
 // -------------------------------------  TEST ROUTE ----------------------------------------------
 
@@ -130,7 +170,6 @@ app.use(auth);
 // -------------------------------------  ROUTES ----------------------------------------------
 
 
-
 // -------------------------------------  ROUTES ----------------------------------------------
 
 
@@ -141,6 +180,7 @@ app.get('/logout', (req, res) => {
   req.session.destroy();
   res.render('pages/logout');
 });
+
 
 // -------------------------------------  START THE SERVER   ----------------------------------------------
 
