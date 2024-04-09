@@ -4,3 +4,63 @@ https://docs.google.com/document/d/1MtwvpkzfjD31VwNBhTXJU4-z_FJjoSXAP1RlE8WL408/
 
 4/3/24: Had a meeting to plan out about project discussion board. We assigned ourselves, discussed each story points, and wrote epics.
 
+4/8/24 1:00: We are in the project right now:
+We have whole skeleton/idea/repository/files setup
+We are working on the beginning login/registration 
+Stuck: Trying to pass test cases
+First endpoints -> Tables
+Making those compatible
+
+Last one we had docker running successfully
+
+
+Started Html files on homepage and others
+
+work on index.js
+What API-> Not finalized it, rapid ai,etc. Not experimented with any API yet.
+
+Website where we can keep track of sports, profitable better, provide on website, information pertaining to your bets.
+Schedule, plan out betting, follow draft,
+
+People seek a lot for sports betting. While doign research on future bets.
+Few in icebook, we not sure which we Implemented
+
+
+Do fundamental structure of the website-> 
+Login->
+Home-> Current game using API
+    When u login, you can enter bets u placed
+    When u go to user page -> betting page, profit, sports bets, lots of stats
+    Sports like UFC, NFL, 
+
+
+
+Tracking sports betting
+Finished Backend
+
+
+
+Goal for next week=> home page, user page, betting page Implemented
+Not formatted, but you will see structure
+Data in database will be shown
+Flow of functionality
+
+Focus on either backend or frontend.
+Fairly to completion
+More than basic framework
+
+
+
+4/8/24 1:15:
+Week 3 meeting
+This week just to have a good implemenation and have something to show
+We are kind of behind?
+Work toward 80% completion Goal
+Sorting roles
+
+Database -> Mostly finalized -> Only way to change it is-> new features,
+Actual data structure is finalized.
+
+Build project to end to end. 
+
+Communicate and work in smaller groups 
