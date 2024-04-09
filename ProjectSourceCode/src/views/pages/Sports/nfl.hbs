@@ -22,18 +22,39 @@
 
   /* Main content styling */
   .main-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Set up a 2-column grid */
+    grid-gap: 20px; /* Space between grid items */
     padding: 20px;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 40px auto; /* Increase margin to give some space on top and bottom */
+  }
+
+  /* Section base styles */
+
+  /* ... Other styles ... */
+
+  /* Main content styling */
+  .main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+  grid-gap: 15px; /* Space between grid items */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 80px auto; /* Increase top margin to lower the boxes */
   }
 
   /* Section base styles */
   .section {
     background: #023E8A; /* Dark blue background for sections */
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 25px; /* Increased padding for better aesthetics */
+    margin-bottom: 20px; /* This will be handled by grid-gap, so it's optional now */
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Slightly darker shadow for depth */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex; /* To ensure the content is centered vertically and horizontally */
+    flex-direction: column; /* Stack children elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
   }
 
   h2 {
@@ -70,6 +91,12 @@
     margin-bottom: 10px;
     color: #ffffff; /* Ensure text is light for readability */
   }
+
+@media(max-width: 900px) {
+    .main-content {
+      grid-template-columns: 1fr; /* Stack the sections on top of each other on smaller screens */
+    }
+  }
 </style>
 </head>
 <body>
@@ -78,7 +105,7 @@
   <div class="section" id="nfl-news">
     <h2>NFL News Headlines</h2>
     <p>Latest NFL news headline 1</p>
-    <p>Latest NFL news headline 2</p>
+    <p>Latest NFL news headline 2</p>  
   </div>
   
   <div class="section" id="rankings">
