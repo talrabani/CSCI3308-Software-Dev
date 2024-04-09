@@ -1,51 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        p {
-            text-align: center;
-            color: #666;
-            margin-top: 20px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports BetZone</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+  }
+
+  header {
+    background: #0077B6;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #027BCE 3px solid;
+  }
+
+  header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+
+  .main-banner {
+    background: url('banner-image.jpg') no-repeat center center/cover;
+    height: auto;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    padding: 50px 20px; /* Add some padding */
+  }
+
+  .main-banner h1 {
+    font-size: 4rem; /* Make the font size larger */
+    margin-bottom: 0.5rem; /* Adjust spacing */
+    font-weight: bold; /* Optional: makes text bolder */
+    text-shadow: 2px 2px 4px #000000; /* Text shadow for better readability */
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the feature boxes */
+    gap: 20px; /* Space between boxes */
+    margin-top: -40px; /* Space from the top content */
+  }
+
+  .feature-box {
+    flex: 1; /* Flexible box sizes */
+    min-width: 250px; /* Minimum width so they don't get too small */
+    max-width: 300px; /* Maximum width for larger screens */
+    background: #023E8A;
+    padding: 40px; /* Increase padding for a bigger box */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow for depth */
+    text-align: center; /* Center text */
+    
+  }
+
+  .feature-box h2 {
+    font-size: 1.75rem; /* Larger heading size */
+    color: #FFD700; /* Gold color for emphasis */
+    margin-bottom: 1rem; /* Adjust spacing */
+  }
+
+  footer {
+    background: #0077B6;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+  }
+
+  /* Responsive Grid */
+  @media(max-width: 700px) {
+    .features {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our Website</h1>
-        <p>A simple home page template that we can work from</p>
+
+
+<div class="main-banner">
+    <h1>Welcome to SportsSphere</h1>
+    <p>Your ultimate sports betting companion</p>
+</div>
+
+
+<section class="container features">
+    <div class="feature-box">
+        <h2>Information</h2>
+        <p>Find all relevant facts for your betting decisions.</p>
     </div>
+    <div class="feature-box">
+        <h2>Track your history</h2>
+        <p>Easily log your bets to keep track of your important betting statistics</p>
+    </div>
+    <div class="feature-box">
+        <h2>Headlines</h2>
+        <p>Find articles relevant to the sports betting scene</p>
+    </div>
+</section>
+
+
 </body>
 </html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Page</title>
+<style>
+  /* Reset margins and padding */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Basic styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Dark background for contrast */
+    color: #ffffff; /* Light text color for readability */
+    line-height: 1.6;
+  }
+
+  /* Main content styling */
+  .main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+  }
+
+  /* Section base styles */
+  .section {
+    background: #023E8A; /* Dark blue background for sections */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Slightly darker shadow for depth */
+  }
+
+  h2 {
+    font-size: 24px;
+    color: #FFD700; /* Gold color for headings */
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  p, li {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  ol, ul {
+    list-style-position: inside;
+    padding-left: 20px; /* Adjust for better alignment */
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+  
+  #schedule li, #rankings li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f8f9fa; /* Subtle separators for list items */
+  }
+
+  #nfl-news p, #odds p {
+    background: #0077B6; /* Lighter blue for contrast */
+    border-left: 5px solid #FFD700; /* Gold color for emphasis */
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #ffffff; /* Ensure text is light for readability */
+  }
+</style>
+</head>
+<body>
+
+<div class="main-content">
+  <div class="section" id="nfl-news">
+    <h2>NFL News Headlines</h2>
+    <p>Latest NFL news headline 1</p>
+    <p>Latest NFL news headline 2</p>
+  </div>
+  
+  <div class="section" id="rankings">
+    <h2>Rankings by Division</h2>
+    <ol>
+      <li>Team A</li>
+      <li>Team B</li>
+      <li>Team C</li>
+    </ol>
+  </div>
+  
+  <div class="section" id="schedule">
+    <h2>This Week's Schedule</h2>
+    <ul>
+      <li>Sunday: Game 1</li>
+      <li>Monday: Game 2</li>
+    </ul>
+  </div>
+  
+  <div class="section" id="odds">
+    <h2>Over/Unders, Relevant Vegas Odds</h2>
+    <p>Matchup 1: Over/Under - Odds</p>
+    <p>Matchup 2: Over/Under - Odds</p>
+  </div>
+</div>
+
+</body>
+</html>

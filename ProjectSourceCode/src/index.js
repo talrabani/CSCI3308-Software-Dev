@@ -79,13 +79,12 @@ app.post('/register', async (req, res) => {
       .then(() => {
           console.log("Registered User")
           res.status(302)
-          //res.redirect('/login');
+          res.redirect('/login');
       })
       .catch(error => {
           res.status(302).render('pages/register', { message: 'Error Registering User' });
       });
 })
-// -------------------------------------  ROUTES for login.hbs   ----------------------------------------------
 const user = {
   username: undefined,
   password: undefined,
@@ -98,12 +97,13 @@ app.get('/', (req, res) => {
   res.redirect('/register'); //this will call the /anotherRoute route in the API
 });
 
-//-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
 
 
 app.get('/login', (req, res) => {
+  console.log('openening login page')
   res.render('pages/login');
 });
+//-------------------------------------  LOGIN ----------------------------------------------
 
 app.post('/login', async (req, res) => {
   const username = req.body.username;
@@ -139,12 +139,16 @@ app.post('/login', async (req, res) => {
   } catch (err) {
       // Error occurred, redirect to login page
       console.log(err);
-      res.redirect('/login');
+      res.redirect('/register');
   }
 });
 
 app.get('/home' , async (req, res) => {
   res.render('pages/home');
+});
+
+app.get('/sports' , async (req, res) => {
+  res.render('pages/Sports/nfl');
 });
 
 // -------------------------------------  TEST ROUTE ----------------------------------------------
@@ -167,14 +171,10 @@ const auth = (req, res, next) => {
 
 app.use(auth);
 
-// -------------------------------------  ROUTES ----------------------------------------------
-
-
-// -------------------------------------  ROUTES ----------------------------------------------
 
 
 
-// -------------------------------------  ROUTES for logout.hbs   ----------------------------------------------
+// -------------------------------------  ROUTE for logout.hbs   ----------------------------------------------
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
