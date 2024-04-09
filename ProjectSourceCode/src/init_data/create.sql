@@ -22,7 +22,6 @@ CREATE TABLE bets (
     stake DECIMAL(10, 2) not null,
     datetime timestamp not null,
     odds INTEGER not null,
-    team varchar(50) not null,
     profit DECIMAL(10, 2) not null,
     FOREIGN KEY (sport_id) REFERENCES sports(sport_id),
     FOREIGN KEY (broker_id) REFERENCES brokers(broker_id),
