@@ -160,8 +160,20 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// -------------------------------------  ROUTES for home.hbs   ----------------------------------------------
 app.get('/home' , async (req, res) => {
-  res.render('pages/home');
+// ALWAYS CHECK IF THE USER IS LOGGED IN OR THERE IS NO DATA TO DISPLAY! IT WILL CRASH
+  if (!req.session.user) {
+    // Redirect to login page
+    return res.redirect('/login');
+  }
+
+  // get the statistics for the user
+  const all_time_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1', [req.session.user.username])).sum;
+  const num_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1', [req.session.user.username])).count;
+  const monthly_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).sum;
+  const monthly_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).count;
+  res.render('pages/home', { all_time_profit, num_bets, monthly_profit, monthly_bets});
 });
 
 app.get('/sports' , async (req, res) => {
@@ -178,17 +190,13 @@ app.get('/bets', async (req, res) => {
   }
 
 
-  const sport_result = await db.any('SELECT sport_name FROM sports');
-  const sports = sport_result.map(sport => sport.sport_name);
+  const sports = (await db.any('SELECT sport_name FROM sports')).map(sport => sport.sport_name);
 
-  const broker_result = await db.any('SELECT broker_name FROM brokers');
-  const brokers = broker_result.map(broker => broker.broker_name);
+  const brokers = (await db.any('SELECT broker_name FROM brokers')).map(broker => broker.broker_name);
 
   const bets = await db.any(`SELECT datetime, sport_name, broker_name, stake, odds, profit
     FROM bets join sports on bets.sport_id = sports.sport_id join brokers on bets.broker_id = brokers.broker_id
     WHERE username = $1`, [req.session.user.username]);
-
-  // const bets = await db.any('select * from bets')
 
   console.log(bets);
 
