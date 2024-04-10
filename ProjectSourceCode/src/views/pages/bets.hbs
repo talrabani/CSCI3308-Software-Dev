@@ -78,6 +78,14 @@
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.25);
   }
 
+  .won {
+  background-color: #90EE90; /* light green */
+}
+
+  .lost {
+  background-color: #FF6347; /* tomato red */
+}
+
 </style>
 </head>
 <body>
@@ -131,34 +139,34 @@
     </form>
   </div>
 
-  <div class="history-container">
-    <h2>Betting History</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Event</th>
-          <th>Amount</th>
-          <th>Odds</th>
-          <th>Outcome</th>
+<div class="history-container">
+  <h2>Betting History</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Sport / Event</th>
+        <th>Broker</th>
+        <th>Amount</th>
+        <th>Odds</th>
+        <th>Profit / Loss</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each bets}}
+        <tr class="{{rowClass this.profit}}">
+          <td>{{formatDate this.datetime}}</td>
+          <td>{{this.sport_name}}</td>
+          <td>{{this.broker_name}}</td>
+          <td>{{this.stake}}</td>
+          <td>{{formatOdds this.odds}}</td>
+          <td>{{this.profit}}</td>
         </tr>
-      </thead>
-      <tbody>
-        {{#each bets}}
-          <tr>
-            <td>{{this.datetime}}</td>
-            <td>{{this.sport}}</td>
-            <td>{{this.broker}}</td>
-            <td>{{this.stake}}</td>
-            <td>{{this.odds}}</td>
-            <td>{{this.outcome}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
-
+</div>
 
 <script>
 document.getElementById('odds-sign-button').addEventListener('click', function(event) {
