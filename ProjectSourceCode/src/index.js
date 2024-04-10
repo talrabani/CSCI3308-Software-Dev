@@ -198,7 +198,6 @@ app.get('/bets', async (req, res) => {
     FROM bets join sports on bets.sport_id = sports.sport_id join brokers on bets.broker_id = brokers.broker_id
     WHERE username = $1`, [req.session.user.username]);
 
-  console.log(bets);
 
   res.render('pages/bets', { sports, brokers, bets });
 });
@@ -206,7 +205,6 @@ app.get('/bets', async (req, res) => {
 
 app.post('/bets', async (req, res) => {
   const { event, broker, amount, odds_sign, odds, outcome } = req.body;
-  console.log(req.body);
   // get the + or - sign from the team name and convert to integer
   const odds_sign_int = odds_sign === '+' ? 1 : -1;
   // if won, profit = stake * odds, if lost, profit = -stake

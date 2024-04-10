@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sports BetZone</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <style>
   /* Basic Reset */
   * {
@@ -128,6 +129,7 @@
     }
   }
 </style>
+
 </head>
 <body>
 
@@ -158,14 +160,41 @@
 </section>
 
 <section class="container stats">
-  <h2>Top Stats</h2>
-  <div class="stat-box">
-    <h3>Profit This Month</h3>
-    <p>{{monthly_profit}}</p>
-  </div>
-  <div class="stat-box">
-    <h3>Number of Bets Placed</h3>
-    <p>{{monthly_bets}}</p>
+  <h2 class="text-center mb-4">Top Stats</h2>
+  <div class="row">
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">Profit This Month</h3>
+          <p class="card-text">{{monthly_profit}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">Number of Bets Placed this month</h3>
+          <p class="card-text">{{monthly_bets}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">Number of all time bets</h3>
+          <p class="card-text">{{all_time_bets}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">All time Profit</h3>
+          <p class="card-text">{{all_time_profit}}</p>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </section>
 
