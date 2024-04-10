@@ -97,6 +97,30 @@
     margin-top: 20px;
   }
 
+  .stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 20px;
+  background: #023E8A;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.stat-box h3 {
+  font-size: 1.5rem;
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.stat-box p {
+  font-size: 1.25rem;
+}
+
   /* Responsive Grid */
   @media(max-width: 700px) {
     .features {
@@ -131,6 +155,18 @@
         <h2>Headlines</h2>
         <p>Find articles relevant to the sports betting scene</p>
     </div>
+</section>
+
+<section class="container stats">
+  <h2>Top Stats</h2>
+  <div class="stat-box">
+    <h3>Profit This Month</h3>
+    <p>{{profitThisMonth}}</p>
+  </div>
+  <div class="stat-box">
+    <h3>Number of Bets Placed</h3>
+    <p>{{numberOfBetsPlaced}}</p>
+  </div>
 </section>
 
 
