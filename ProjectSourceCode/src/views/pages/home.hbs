@@ -190,7 +190,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h3 class="card-title">All time Profit</h3>
-          <p class="card-text">{{all_time_profit}}</p>
+          <p class="card-text">${{all_time_profit}}</p>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@
         <div class="card-body">
           <h3 class="card-title">Top Sports</h3>
           {{#each top_sports}}
-            <p class="card-text">{{this.sport_name}}: {{this.total_profit}}</p>
+            <p class="card-text">{{this.sport_name}}: ${{this.total_profit}}</p>
           {{/each}}
         </div>
       </div>
