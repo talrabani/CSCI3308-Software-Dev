@@ -170,10 +170,13 @@ app.get('/home' , async (req, res) => {
 
   // get the statistics for the user
   const all_time_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1', [req.session.user.username])).sum;
-  const num_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1', [req.session.user.username])).count;
+  const all_time_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1', [req.session.user.username])).count;
   const monthly_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).sum;
   const monthly_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).count;
-  res.render('pages/home', { all_time_profit, num_bets, monthly_profit, monthly_bets});
+
+  const top_sports = await db.any('SELECT sport_name, SUM(profit) as total_profit FROM bets JOIN sports ON bets.sport_id = sports.sport_id WHERE username = $1 GROUP BY sport_name ORDER BY total_profit DESC LIMIT 3', [req.session.user.username]);
+
+  res.render('pages/home', { all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports });
 });
 
 app.get('/sports' , async (req, res) => {

@@ -194,6 +194,16 @@
         </div>
       </div>
     </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">Top Sports</h3>
+          {{#each top_sports}}
+            <p class="card-text">{{this.sport_name}}: {{this.total_profit}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </div>
     
   </div>
 </section>
