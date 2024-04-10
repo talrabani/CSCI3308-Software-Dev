@@ -168,6 +168,8 @@ app.get('/home' , async (req, res) => {
     return res.redirect('/login');
   }
 
+  const username = req.session.user.username;
+
   // get the statistics for the user
   const all_time_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1', [req.session.user.username])).sum;
   const all_time_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1', [req.session.user.username])).count;
@@ -176,7 +178,7 @@ app.get('/home' , async (req, res) => {
 
   const top_sports = await db.any('SELECT sport_name, SUM(profit) as total_profit FROM bets JOIN sports ON bets.sport_id = sports.sport_id WHERE username = $1 GROUP BY sport_name ORDER BY total_profit DESC LIMIT 3', [req.session.user.username]);
 
-  res.render('pages/home', { all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports });
+  res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports });
 });
 
 app.get('/sports' , async (req, res) => {
