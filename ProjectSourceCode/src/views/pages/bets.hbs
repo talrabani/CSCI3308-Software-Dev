@@ -85,15 +85,41 @@
 <div class="container">
   <div class="form-container">
     <h2>Add Past Bet</h2>
-    <form id="bet-form">
+    <form id="bet-form" method="POST" action="/bets">
+
       <div class="mb-3">
-        <label for="event">Event</label>
-        <input type="text" id="event" name="event" class="form-control">
+        <label for="event">Event/Sport</label>
+        <select id="event" name="event" class="form-control">
+          {{#each sports}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
       </div>
+
       <div class="mb-3">
-        <label for="amount">Bet Amount</label>
-        <input type="number" id="amount" name="amount" class="form-control">
+        <label for="event">Broker</label>
+        <select id="broker" name="broker" class="form-control">
+          {{#each brokers}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
       </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="mr-2" style="flex: 1;">
+            <label for="amount">Bet Amount</label>
+            <input type="number" id="amount" name="amount" class="form-control">
+          </div>
+          <div class="ml-2" style="flex: 1;">
+            <label for="odds">Odds</label>
+            <div class="d-flex">
+              <button id="odds-sign-button" class="btn btn-primary mr-2">+</button>
+              <input type="hidden" id="odds_sign" name="odds_sign" value="+">
+              <input type="number" id="odds" name="odds" class="form-control">
+            </div>
+          </div>
+        </div>
+
       <div class="mb-3">
         <label for="outcome">Outcome</label>
         <select id="outcome" name="outcome" class="form-control">
@@ -113,15 +139,34 @@
           <th>Date</th>
           <th>Event</th>
           <th>Amount</th>
+          <th>Odds</th>
           <th>Outcome</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Table rows would be populated here -->
+        {{#each bets}}
+          <tr>
+            <td>{{this.datetime}}</td>
+            <td>{{this.sport}}</td>
+            <td>{{this.broker}}</td>
+            <td>{{this.stake}}</td>
+            <td>{{this.odds}}</td>
+            <td>{{this.outcome}}</td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
 </div>
 
+
+<script>
+document.getElementById('odds-sign-button').addEventListener('click', function(event) {
+  event.preventDefault();
+  const newSign = this.textContent === '+' ? '-' : '+';
+  this.textContent = newSign;
+  document.getElementById('odds_sign').value = newSign;
+});
+</script>
 </body>
 </html>
