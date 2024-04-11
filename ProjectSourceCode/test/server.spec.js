@@ -34,14 +34,14 @@ describe('Testing Add User API', () => {
     chai
       .request(server)
       .post('/register')
-      .send({username: 'John Doe',  password: 'johndoe', email: 'johndoe@gmail.com', dob: '01-01-0001'})
+      .send({username: 'John Doe',  password: 'johndoe', email: 'johndoe@gmail.com', dob: '0001-01-01'})
       .end((err, res) => {
         expect(res).to.have.status(400);
         // expect(res.body.message).to.equals('Success');
         done();
       });
   });
-  it('Negative : /register. Checking invalidf Name', done => {
+  it('Negative : /register. Checking Invalid Name/Password and DOB', done => {
     chai
       .request(server)
       .post('/register')

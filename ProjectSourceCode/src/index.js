@@ -79,34 +79,19 @@ app.post('/register', async (req, res) => {
   }
 
   //hash the password using bcrypt library
+
     try {
-      try {
-            const hash = await bcrypt.hash(req.body.password, 10);
-            await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
-            console.log("Registered User")
-            res.redirect(400, '/login');
-          }
+          const hash = await bcrypt.hash(req.body.password, 10);
+          await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
+          console.log("Registered User")
+          res.redirect(400, '/login');
+        }
     catch(err){
       console.error('Error registering user:', err);
       //redirect if registration fails
       res.status(302).render('pages/register', { message: 'Error Registering User' });
     }
-  } // Add this closing curly brace
-  });
-  // app.post('/register', async (req, res) => {
-  //   //hash the password using bcrypt library
-  //   try {
-  //     const hash = await bcrypt.hash(req.body.password, 10);
-  //     await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
-  //     console.log("Registered User")
-  //     res.redirect(400, '/login');
-  //   }
-  //   catch(err){
-  //     console.error('Error registering user:', err);
-  //     //redirect if registration fails
-  //     res.render(302, 'pages/register', { message: 'Error Registering User' });
-  //   }
-  // });
+});
   const user = {
     username: undefined,
     password: undefined,
