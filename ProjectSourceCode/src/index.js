@@ -61,48 +61,58 @@ db.connect()
 app.get('/register', (req, res) => {
   res.render('pages/register');
 })
+// app.post('/register', async (req, res) => {
+//   const hash = await bcrypt.hash(req.body.password, 10);
+//   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
+//       .then(() => {
+//           console.log("Registered User")
+          
+//           res.status(400).send('Success').redirect('login');
+//       })
+//       .catch(error => {
+//           res.status(302).render('pages/register', { message: 'Error Registering User' });
+//       });
+// })
+// app.post('/register', async (req, res) => {
+//   const hash = await bcrypt.hash(req.body.password, 10);
+//   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
+//       .then(() => {
+//           console.log("Registered User")
+//           res.status(302)
+//           res.redirect('/login');
+//       })
+//       .catch(error => {
+//           res.status(302).render('pages/register', { message: 'Error Registering User' });
+//       });
+// })
+
 // Register
-
-
 app.post('/register', async (req, res) => {
-  const { username, password, dob } = req.body;
-
-  // Check if username, password, or dob is empty
-  if (!username || !password || !dob) {
-    return res.status(302).render('pages/register', { message: 'Username, password, and date of birth are required.' });
-  }
-
-  // Check if dob is in the correct format (YYYY-MM-DD)
-  const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
-  if (!dobRegex.test(dob)) {
-    return res.status(302).render('pages/register', { message: 'Date of birth must be in the format YYYY-MM-DD.' });
-  }
-
   //hash the password using bcrypt library
+  try {
+    const hash = await bcrypt.hash(req.body.password, 10);
+    await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
+    console.log("Registered User")
+              res.status(302);
+              res.redirect('/login');
+  }
+  catch(err){
+    console.error('Error registering user:', err);
+    //redirect if registration fails
+    res.status(302).render('pages/register', { message: 'Error Registering User' });
+  }
+ });
+const user = {
+  username: undefined,
+  password: undefined,
+  datetime_created: undefined,
+};
 
-    try {
-          const hash = await bcrypt.hash(req.body.password, 10);
-          await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
-          console.log("Registered User")
-          res.redirect(400, '/login');
-        }
-    catch(err){
-      console.error('Error registering user:', err);
-      //redirect if registration fails
-      res.status(302).render('pages/register', { message: 'Error Registering User' });
-    }
+//-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
+
+app.get('/', (req, res) => {
+  res.redirect('/register'); //this will call the /anotherRoute route in the API
 });
-  const user = {
-    username: undefined,
-    password: undefined,
-    datetime_created: undefined,
-  };
-
-  //-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
-
-  app.get('/', (req, res) => {
-    res.redirect('/register'); //this will call the /anotherRoute route in the API
-  });
 
 
 
@@ -150,26 +160,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// -------------------------------------  ROUTES for home.hbs   ----------------------------------------------
 app.get('/home' , async (req, res) => {
-// ALWAYS CHECK IF THE USER IS LOGGED IN OR THERE IS NO DATA TO DISPLAY! IT WILL CRASH
-  if (!req.session.user) {
-    // Redirect to login page
-    return res.redirect('/login');
-  }
-
-  const username = req.session.user.username;
-
-  // get the statistics for the user
-  const all_time_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1', [req.session.user.username])).sum;
-  const all_time_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1', [req.session.user.username])).count;
-  const monthly_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).sum;
-  const monthly_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).count;
-
-  const top_sports = await db.any('SELECT sport_name, SUM(profit) as total_profit FROM bets JOIN sports ON bets.sport_id = sports.sport_id WHERE username = $1 GROUP BY sport_name ORDER BY total_profit DESC LIMIT 3', [req.session.user.username]);
-  const win_rate = ((await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND profit > 0', [req.session.user.username])).count / all_time_bets)*100;
-
-  res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports, win_rate });
+  res.render('pages/home');
 });
 
 app.get('/sports' , async (req, res) => {
@@ -186,14 +178,19 @@ app.get('/bets', async (req, res) => {
   }
 
 
-  const sports = (await db.any('SELECT sport_name FROM sports')).map(sport => sport.sport_name);
+  const sport_result = await db.any('SELECT sport_name FROM sports');
+  const sports = sport_result.map(sport => sport.sport_name);
 
-  const brokers = (await db.any('SELECT broker_name FROM brokers')).map(broker => broker.broker_name);
+  const broker_result = await db.any('SELECT broker_name FROM brokers');
+  const brokers = broker_result.map(broker => broker.broker_name);
 
-  const bets = await db.any(`SELECT datetime, sport_name, broker_name, stake, odds, profit
-    FROM bets join sports on bets.sport_id = sports.sport_id join brokers on bets.broker_id = brokers.broker_id
-    WHERE username = $1`, [req.session.user.username]);
+  // const bets = await db.any(`SELECT datetime, sport_name, broker_name, stake, odds, profit
+  //   FROM bets join sports on bets.sport_id = sports.sport_id join brokers on bets.broker_id = brokers.broker_id
+  //   WHERE username = $1`, [req.session.user.username]);
 
+  const bets = await db.any('select * from bets')
+
+  console.log(bets);
 
   res.render('pages/bets', { sports, brokers, bets });
 });
@@ -201,17 +198,12 @@ app.get('/bets', async (req, res) => {
 
 app.post('/bets', async (req, res) => {
   const { event, broker, amount, odds_sign, odds, outcome } = req.body;
+  console.log(req.body);
   // get the + or - sign from the team name and convert to integer
   const odds_sign_int = odds_sign === '+' ? 1 : -1;
   // if won, profit = stake * odds, if lost, profit = -stake
   if (outcome === 'won') {
-    // calculate the profit (odds are in American Moneyline format)
-    if (odds_sign_int === 1) {
-      profit = amount * (odds / 100);
-    }
-    else {
-      profit = amount * (100 / odds);
-    }
+    profit = amount * odds_sign_int * odds[1];
   } else {
     profit = -amount;
   }
@@ -219,26 +211,8 @@ app.post('/bets', async (req, res) => {
   const datetime = new Date().toISOString();
   const sport_id = await db.one('SELECT sport_id FROM sports WHERE sport_name = $1', [event]);
   const broker_id = await db.one('SELECT broker_id FROM brokers WHERE broker_name = $1', [broker]);
-  await db.none('INSERT INTO bets (sport_id, broker_id, username, stake, datetime, odds, profit) VALUES ($1, $2, $3, $4, $5, $6, $7)', [sport_id.sport_id, broker_id.broker_id, username, amount, datetime, odds*odds_sign_int, profit]);
+  await db.none('INSERT INTO bets (sport_id, broker_id, username, stake, datetime, odds, profit) VALUES ($1, $2, $3, $4, $5, $6, $7)', [sport_id.sport_id, broker_id.broker_id, username, amount, datetime, odds, profit]);
   res.redirect('/bets');
-});
-
-// Handelbars helpers
-// function to format the date in handelbars
-hbs.handlebars.registerHelper('formatDate', function(datetime) {
-  const date = new Date(datetime);
-  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-  const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-  return date.toLocaleDateString('en-US', dateOptions) + ' ' + date.toLocaleTimeString('en-US', timeOptions);
-});
-// function to format the odds in handelbars
-hbs.handlebars.registerHelper('formatOdds', function(odds) {
-  return odds >= 0 ? `+${odds}` : `${odds}`;
-});
-
-// function to format the profit in handelbars
-hbs.handlebars.registerHelper('rowClass', function(profit) {
-  return profit > 0 ? 'won' : 'lost';
 });
 
 
