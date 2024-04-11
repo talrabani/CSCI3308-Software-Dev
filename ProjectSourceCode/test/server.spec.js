@@ -90,4 +90,37 @@ describe('Testing Redirect', () => {
       });
   });
 });
+
+// create a cookies variable
+var cookies;
+
+describe('Login', () => {
+  // Sample test case given to test / endpoint.
+  it('Returns the default welcome message', done => {
+    chai
+      .request(server)
+      .get('/login')
+      .end((err, res) => {
+        // expect statements
+        cookies = res.headers['set-cookie'].pop().split(';')[0]; // save the cookies
+        done();
+      });
+  });
+});
+
+describe('Home', () => {
+  // Sample test case given to test / endpoint.
+  it('Returns the default logout message', done => {
+    chai
+      .request(server)
+      .get('/logout')
+      .set('cookie', cookies) // set the cookie in the request
+      .end((err, res) => {
+        // expect statements
+        done();
+      });
+  });
+});
+
+
 // ********************************************************************************
