@@ -61,58 +61,63 @@ db.connect()
 app.get('/register', (req, res) => {
   res.render('pages/register');
 })
-// app.post('/register', async (req, res) => {
-//   const hash = await bcrypt.hash(req.body.password, 10);
-//   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
-//       .then(() => {
-//           console.log("Registered User")
-          
-//           res.status(400).send('Success').redirect('login');
-//       })
-//       .catch(error => {
-//           res.status(302).render('pages/register', { message: 'Error Registering User' });
-//       });
-// })
-// app.post('/register', async (req, res) => {
-//   const hash = await bcrypt.hash(req.body.password, 10);
-//   db.none('INSERT INTO users(username, password, dob) VALUES($1, $2, $3)', [req.body.username, hash, req.body.dob])
-//       .then(() => {
-//           console.log("Registered User")
-//           res.status(302)
-//           res.redirect('/login');
-//       })
-//       .catch(error => {
-//           res.status(302).render('pages/register', { message: 'Error Registering User' });
-//       });
-// })
-
 // Register
+
+
 app.post('/register', async (req, res) => {
+  const { username, password, dob } = req.body;
+
+  // Check if username, password, or dob is empty
+  if (!username || !password || !dob) {
+    return res.status(302).render('pages/register', { message: 'Username, password, and date of birth are required.' });
+  }
+
+  // Check if dob is in the correct format (YYYY-MM-DD)
+  const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dobRegex.test(dob)) {
+    return res.status(302).render('pages/register', { message: 'Date of birth must be in the format YYYY-MM-DD.' });
+  }
+
   //hash the password using bcrypt library
-  try {
-    const hash = await bcrypt.hash(req.body.password, 10);
-    await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
-    console.log("Registered User")
-              res.status(302);
-              res.redirect('/login');
-  }
-  catch(err){
-    console.error('Error registering user:', err);
-    //redirect if registration fails
-    res.status(302).render('pages/register', { message: 'Error Registering User' });
-  }
- });
-const user = {
-  username: undefined,
-  password: undefined,
-  datetime_created: undefined,
-};
+    try {
+      try {
+            const hash = await bcrypt.hash(req.body.password, 10);
+            await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
+            console.log("Registered User")
+            res.redirect(400, '/login');
+          }
+    catch(err){
+      console.error('Error registering user:', err);
+      //redirect if registration fails
+      res.status(302).render('pages/register', { message: 'Error Registering User' });
+    }
+  } // Add this closing curly brace
+  });
+  // app.post('/register', async (req, res) => {
+  //   //hash the password using bcrypt library
+  //   try {
+  //     const hash = await bcrypt.hash(req.body.password, 10);
+  //     await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
+  //     console.log("Registered User")
+  //     res.redirect(400, '/login');
+  //   }
+  //   catch(err){
+  //     console.error('Error registering user:', err);
+  //     //redirect if registration fails
+  //     res.render(302, 'pages/register', { message: 'Error Registering User' });
+  //   }
+  // });
+  const user = {
+    username: undefined,
+    password: undefined,
+    datetime_created: undefined,
+  };
 
-//-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
+  //-------------------------------------  DEFAULT ROUTE   ----------------------------------------------
 
-app.get('/', (req, res) => {
-  res.redirect('/register'); //this will call the /anotherRoute route in the API
-});
+  app.get('/', (req, res) => {
+    res.redirect('/register'); //this will call the /anotherRoute route in the API
+  });
 
 
 
