@@ -223,6 +223,18 @@ app.post('/bets', async (req, res) => {
   res.redirect('/bets');
 });
 
+app.get('/api/sport-images', async (req, res) => {
+  const sportName = req.query.name;
+
+  try {
+    const sport = await db.one('SELECT sport_image FROM sports WHERE sport_name = $1', [sportName]);
+    res.json({ imageUrl: sport.sport_image });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching the sport image.' });
+  }
+});
+
 // Handelbars helpers
 // function to format the date in handelbars
 hbs.handlebars.registerHelper('formatDate', function(datetime) {

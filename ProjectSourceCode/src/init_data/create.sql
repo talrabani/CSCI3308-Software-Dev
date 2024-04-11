@@ -6,7 +6,8 @@ CREATE TABLE users (
 
 CREATE TABLE sports (
     sport_id SERIAL PRIMARY KEY,
-    sport_name varchar(50) not null
+    sport_name varchar(50) not null,
+    sport_image varchar(400) not null
 );
 
 CREATE TABLE brokers (

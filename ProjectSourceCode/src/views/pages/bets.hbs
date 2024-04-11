@@ -10,6 +10,8 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
     color: #fff;
+    background-size: cover;
+    background-position: bottom;
   }
 
   .container {
@@ -18,7 +20,7 @@
   }
 
   .form-container, .history-container {
-    background: #023E8A;
+    background: rgba(82, 82, 82, 0.801);
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 30px;
@@ -169,6 +171,25 @@
 </div>
 
 <script>
+  // Get the sport selection dropdown
+  const sportSelect = document.getElementById('event');
+
+  // Listen for changes on the sport selection dropdown
+  sportSelect.addEventListener('change', async function() {
+    // Get the selected sport
+    const selectedSport = sportSelect.value;
+
+    // Make a request to the server to get the image URL
+    const response = await fetch(`/api/sport-images?name=${encodeURIComponent(selectedSport)}`);
+    const data = await response.json();
+    const imageUrl = data.imageUrl;
+
+    // Update the background image
+    document.body.style.backgroundImage = `url('${imageUrl}')`;
+  });
+
+
+
 document.getElementById('odds-sign-button').addEventListener('click', function(event) {
   event.preventDefault();
   const newSign = this.textContent === '+' ? '-' : '+';
