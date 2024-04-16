@@ -172,8 +172,41 @@ app.get('/home' , async (req, res) => {
   res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports, win_rate });
 });
 
-app.get('/sports' , async (req, res) => {
+app.get('/nfl' , async (req, res) => {
   res.render('pages/Sports/nfl');
+});
+
+app.get('/ufc' , async (req, res) => {
+
+  var axios = require('axios');
+  
+  var config = {
+    method: 'get',
+    url: 'https://v1.mma.api-sports.io/fights',
+    params: {
+      "date": "2024-04-27"
+    },
+    headers: {
+      'x-rapidapi-key': "eb6eb08c9402c536a0f07168be5d0ac9",
+      'x-rapidapi-host': 'v1.mma.api-sports.io'
+    }
+  };
+  
+  axios(config)
+  .then(function (response) {
+    console.log("NE ONE");
+    console.log(JSON.stringify(response.data.response[0].slug));
+    res.render('pages/Sports/ufc', {fights: response.data.response});
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+});
+
+app.get('/nba' , async (req, res) => {
+  res.render('pages/Sports/nba');
 });
 
 // -------------------------------------  ROUTES for bets.hbs   ----------------------------------------------
@@ -273,6 +306,16 @@ const auth = (req, res, next) => {
 };
 
 app.use(auth);
+
+
+// -------------------------------------  MMA GET REQUEST   ----------------------------------------------
+
+app.get('/mma-api', (req, res) => {
+
+
+
+
+});
 
 
 
