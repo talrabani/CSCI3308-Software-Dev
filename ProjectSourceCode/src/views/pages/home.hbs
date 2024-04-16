@@ -16,7 +16,7 @@
 
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
+    background-color: #86c5f6;
     color: #fff;
     line-height: 1.6;
     padding: 20px;
@@ -61,7 +61,8 @@
     font-size: 4rem; /* Make the font size larger */
     margin-bottom: 0.5rem; /* Adjust spacing */
     font-weight: bold; /* Optional: makes text bolder */
-    text-shadow: 2px 2px 4px #000000; /* Text shadow for better readability */
+    
+    color: #173f74;
   }
 
   .features {
@@ -73,22 +74,39 @@
   }
 
   .feature-box {
-    flex: 1; /* Flexible box sizes */
-    min-width: 250px; /* Minimum width so they don't get too small */
-    max-width: 300px; /* Maximum width for larger screens */
-    background: #023E8A;
-    padding: 40px; /* Increase padding for a bigger box */
+    position: relative;
+    width: 300px; /* Minimum width so they don't get too small */
+    min-height: 200px;
+    background: #bcddf2;
     border-radius: 10px; /* Rounded corners for aesthetics */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow for depth */
     text-align: center; /* Center text */
-    
+    margin-bottom: 20px;
   }
-
   .feature-box h2 {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 75px;
+    background: #173f74;
     font-size: 1.75rem; /* Larger heading size */
     color: #FFD700; /* Gold color for emphasis */
     margin-bottom: 1rem; /* Adjust spacing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
   }
+  .centered-text{
+    position: absolute;
+    top: 60%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+
 
   .stats {
   display: flex;
@@ -96,23 +114,28 @@
   margin-top: 20px;
 }
 
-.stat-box {
-  text-align: center;
-  padding: 20px;
-  background: #023E8A;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+ .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 30px;
+    padding-bottom: 70px;
 
-.stat-box h3 {
-  font-size: 1.5rem;
-  color: #FFD700;
-  margin-bottom: 1rem;
-}
-
-.stat-box p {
-  font-size: 1.25rem;
-}
+  }
+  .grid-item {
+    padding: 20px;
+    border: 3px solid #027BCE;
+    text-align: center;
+    background-color: #bcddf2;
+  }
+  .grid-item h2{
+    color:#173f74;
+    font-size: 1.5rem;
+  }
+  .grid-text{
+    color:#000;
+    font-size: 1.5rem;
+  }
 
 .card-body {
   height: 20%;
@@ -130,8 +153,8 @@
 
 
 <div class="main-banner">
-    <h1>Welcome to SportSphere, {{username}}!</h1>
-    <p>Your ultimate sports betting companion</p>
+    <h1>WELCOME TO SPORTSPHERE, {{username}}!</h1>
+    <p style="color: #000000;">Your ultimate sports betting companion</p>
 </div>
 
 
@@ -140,75 +163,51 @@
         <a href="/sports" >
             <h2>Information</h2>
         </a>
-        <p>Find all relevant facts for your betting decisions.</p>
+        <p class="centered-text">Find all relevant facts for your betting decisions.</p>
     </div>
     <div class="feature-box">
         <a href="/bets"> 
             <h2>Track your history</h2>
         </a>
-        <p>Easily log your bets to keep track of your important betting statistics</p>
+        <p class="centered-text">Easily log your bets to keep track of your important betting statistics</p>
     </div>
     <div class="feature-box">
         <h2>Headlines</h2>
-        <p>Find articles relevant to the sports betting scene</p>
+        <p class="centered-text">Find articles relevant to the sports betting scene</p>
     </div>
 </section>
+
 <div>
-  <h2 class="text-center mb-4">Top Stats</h2>
+  <h2 class="text-center mb-4" style="padding-top: 10px; color:#173f74; "><strong>Top Stats</strong></h2>
 </div>
-<section class="container stats">
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">Profit Last 30 Days</h3>
-          <p class="card-text">{{monthly_profit}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">Number of Bets Placed in past 30 days</h3>
-          <p class="card-text">{{monthly_bets}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">Number of all time bets</h3>
-          <p class="card-text">{{all_time_bets}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">All time Profit</h3>
-          <p class="card-text">${{all_time_profit}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">Top Sports</h3>
-          {{#each top_sports}}
-            <p class="card-text">{{this.sport_name}}: ${{this.total_profit}}</p>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3 class="card-title">Win Rate</h3>
-          <p class="card-text">{{win_rate}}%</p>
-        </div>
-      </div>
-    </div>
+
+  <div class="grid-container">
+  <div class="grid-item">
+    <h2>Profit - Last 30 Days</h2>
+     <p class="grid-text"> {{monthly_profit}}</p>
   </div>
+  <div class="grid-item">
+    <h2># of Bets Placed - Last 30 days</h2>
+    <p class="grid-text">{{monthly_bets}}</p>
+  </div>
+  <div class="grid-item">
+    <h2># of All Time Bets</h2>
+    <p class="grid-text">{{all_time_bets}}</p>
+  </div>
+  <div class="grid-item">
+    <h2>All Time Profit</h2>
+    <p class="grid-text">${{all_time_profit}}</p>
+  </div>
+  <div class="grid-item">
+    <h2>Top Sports</h2>
+    <p class="grid-text">{{this.sport_name}}: ${{this.total_profit}}</p>
+  </div>
+  <div class="grid-item">
+    <h2>Win Rate</h2>
+    <p class="grid-text">{{win_rate}}%</p>
+  </div>
+</div>
+
 </section>
 
 
