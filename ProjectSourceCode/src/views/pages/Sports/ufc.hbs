@@ -3,69 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sports Page</title>
+<title>Upcoming UFC Events</title>
 <style>
-  /* Wrapper style */
-.wrapper {
-  display: flex;
-}
-
-/* Sidebar styling */
-.sidebar {
-  background-color: #023E8A; /* Match with section colors */
-  min-width: 250px; /* Set a minimum width for the sidebar */
-  max-width: 300px; /* Set a maximum width for the sidebar */
-  height: 100vh; /* Full height */
-  padding: 20px;
-}
-
-.sidebar ul {
-  list-style-type: none;
-}
-
-.sidebar ul li a {
-  color: #ffffff;
-  text-decoration: none;
-  display: block;
-  padding: 10px;
-  margin: 5px 0;
-  transition: background-color 0.3s;
-}
-
-.sidebar ul li a:hover {
-  background-color: #FFD700; /* Highlight color on hover */
-}
-
-/* Adjust the main content margin */
-.main-content {
-  margin-left: 300px; /* This should match the max-width of the sidebar */
-  flex: 1; /* Takes the remaining space */
-}
-
-/* Responsive adjustment */
-@media(max-width: 900px) {
-  .wrapper {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    height: auto;
-    width: 100%;
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-}
-
-  /* Reset margins and padding */
+  /* Reset margins and padding for a clean layout */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* Basic styles */
+  /* Basic styles for consistent font and background */
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212; /* Dark background for contrast */
@@ -73,81 +20,83 @@
     line-height: 1.6;
   }
 
-  /* Main content styling */
-  .main-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Set up a 2-column grid */
-    grid-gap: 20px; /* Space between grid items */
+  /* Wrapper to hold sidebar and content */
+  .wrapper {
+    display: flex;
+    margin-top: 45px;
+  }
+
+  /* Sidebar styling */
+  .sidebar {
+    background-color: #023E8A; /* Dark blue to match section colors */
+    min-width: 250px;
+    max-width: 300px;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .sidebar ul {
+    list-style-type: none;
+  }
+
+  .sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+  }
+
+  .sidebar ul li a:hover {
+    background-color: #FFD700; /* Gold color for hover effect */
+  }
+
+  /* Main content area */
+  .container {
+    flex: 1;
     padding: 20px;
     max-width: 1200px;
-    margin: 40px auto; /* Increase margin to give some space on top and bottom */
+    margin: 40px auto; /* Centering container */
   }
 
-  /* Section base styles */
-
-  /* ... Other styles ... */
-
-  /* Main content styling */
-  .main-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2-column grid */
-  grid-gap: 15px; /* Space between grid items */
-  padding: 20px;
-  max-width: 1200px;
-  margin: 80px auto; /* Increase top margin to lower the boxes */
-  }
-
-  /* Section base styles */
-  .section {
-    background: #023E8A; /* Dark blue background for sections */
-    padding: 25px; /* Increased padding for better aesthetics */
-    margin-bottom: 20px; /* This will be handled by grid-gap, so it's optional now */
+  .event {
+    background: #023E8A;
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex; /* To ensure the content is centered vertically and horizontally */
-    flex-direction: column; /* Stack children elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
   }
 
-  h2 {
-    font-size: 24px;
-    color: #FFD700; /* Gold color for headings */
-    border-bottom: 3px solid #007bff;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+  .odds-table {
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  p, li {
-    font-size: 18px;
-    line-height: 1.6;
+  .odds-table th, .odds-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ffffff;
   }
 
-  ol, ul {
-    list-style-position: inside;
-    padding-left: 20px; /* Adjust for better alignment */
+  .odds-table th {
+    background: #0077B6;
+    color: #FFD700;
   }
 
-  ol {
-    list-style-type: decimal;
-  }
-  
-  #schedule li, #rankings li {
-    padding: 10px 0;
-    border-bottom: 1px solid #f8f9fa; /* Subtle separators for list items */
-  }
+  /* Responsive design adjustments */
+  @media(max-width: 900px) {
+    .wrapper {
+      flex-direction: column;
+    }
 
-  #UFC-news p, #odds p {
-    background: #0077B6; /* Lighter blue for contrast */
-    border-left: 5px solid #FFD700; /* Gold color for emphasis */
-    padding: 10px;
-    margin-bottom: 10px;
-    color: #ffffff; /* Ensure text is light for readability */
-  }
+    .sidebar {
+      width: 100%;
+      height: auto;
+    }
 
-@media(max-width: 900px) {
-    .main-content {
-      grid-template-columns: 1fr; /* Stack the sections on top of each other on smaller screens */
+    .container {
+      margin-left: 0;
     }
   }
 </style>
@@ -157,48 +106,47 @@
 <div class="wrapper">
   <nav class="sidebar">
     <ul>
-      <li><a href="">NBA</a></li>
       <li><a href="/nfl">NFL</a></li>
       <li><a href="/nba">NBA</a></li>
       <li><a href="/ufc">UFC</a></li>
-      <!-- Add other sports links here -->
+      <!-- Additional sports links can be added here -->
     </ul>
   </nav>
-  <div class="main-content">
-    <div class="section" id="ufc-news">
-      <h2>UFC News Headlines</h2>
-      <p>Latest UFC news headline 1</p>
-      <p>Latest UFC news headline 2</p>  
+
+  <div class="container">
+    <h1>Upcoming UFC Events</h1>
+
+    {{#each events}}
+    <div class="event">
+      <h2>{{home_team}} vs. {{away_team}}</h2>
+      <p>Commence Time: {{commence_time}}</p>
+      <h3>Odds</h3>
+      <table class="odds-table">
+        <thead>
+          <tr>
+            <th>Bookmaker</th>
+            <th>{{home_team}}</th>
+            <th>{{away_team}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each bookmakers}}
+          <tr>
+            <td>{{title}}</td>
+            {{#each markets}}
+            {{#each outcomes}}
+            <td>{{price}}</td>
+            {{/each}}
+            {{/each}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
-    
-    <div class="section" id="rankings">
-      <h2>Fighter Rankings by Division</h2>
-      <ol>
-        <li>Fighter A</li>
-        <li>Fighter B</li>
-        <li>Fighter C</li>
-      </ol>
-    </div>
-    
-    <div class="section" id="schedule">
-      <h2>Upcoming Fights Schedule</h2>
-      <ul>
-        <li>Saturday: {{fights.0.slug}}</li>
-        <li>Friday: Preliminary Fights</li>
-      </ul>
-    </div>
-    
-    <div class="section" id="odds">
-      <h2>Latest Fight Odds</h2>
-      <p>Fight 1: Fighter A vs. Fighter B - Odds</p>
-      <p>Fight 2: Fighter C vs. Fighter D - Odds</p>
-    </div>
+    {{/each}}
+
   </div>
 </div>
 
 </body>
 </html>
-
-
-</div>
-

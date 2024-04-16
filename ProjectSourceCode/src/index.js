@@ -172,38 +172,125 @@ app.get('/home' , async (req, res) => {
   res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports, win_rate });
 });
 
+// ---------------------------------- NFL ---------------------------------------------------------------------
+
 app.get('/nfl' , async (req, res) => {
+
   res.render('pages/Sports/nfl');
 });
 
+// app.get('/nfl' , async (req, res) => {
+
+//   var axios = require('axios');
+  
+//   var config = {
+//     method: 'GET',
+//     url: 'https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
+//     headers: {
+//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+//     },
+//     params: {
+//       "oddsFormat": "american",
+//       "markets": "h2h,spreads,totals",
+//       "regions": "us",
+//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+//       "sports": "upcoming",
+//     }
+//   };
+//   axios(config)
+//   .then(function (response) {
+//     console.log(JSON.stringify(response.data));
+//     res.render('pages/Sports/nfl', {events: response.data.slice(0, 15)});
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// });
+
+// ------------------------------------------------------------------------------------------------------------
+
+
+
+// ---------------------------------- UFC ---------------------------------------------------------------------
+
 app.get('/ufc' , async (req, res) => {
-
-  var axios = require('axios');
-  
-  var config = {
-    method: 'get',
-    url: 'https://v1.mma.api-sports.io/fights',
-    params: {
-      "date": "2024-04-27"
-    },
-    headers: {
-      'x-rapidapi-key': "eb6eb08c9402c536a0f07168be5d0ac9",
-      'x-rapidapi-host': 'v1.mma.api-sports.io'
-    }
-  };
-  
-  axios(config)
-  .then(function (response) {
-    console.log("NE ONE");
-    console.log(JSON.stringify(response.data.response[0].slug));
-    res.render('pages/Sports/ufc', {fights: response.data.response});
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
+  res.render('pages/Sports/ufc');
 
 });
+
+
+// app.get('/ufc' , async (req, res) => {
+
+//   var axios = require('axios');
+  
+//   var config = {
+//     method: 'GET',
+//     url: 'https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds?regions=us&markets=h2h&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e&sports=upcoming',
+//     headers: {
+//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+//     },
+//     params: {
+//       "oddsFormat": "american",
+//       "markets": "h2h",
+//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+//       "sports": "upcoming",
+//     }
+//   };
+//   axios(config)
+//   .then(function (response) {
+//     // console.log(JSON.stringify(response.data));
+//     res.render('pages/Sports/ufc', {events: response.data.slice(0, 15)});
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// });
+
+// -----------------------------------------------------------------------------------------------------------
+
+// -----------------------------------------------NBA---------------------------------------------------------
+
+app.get('/nba' , async (req, res) => {
+    res.render('pages/Sports/nba');
+
+});
+
+
+// app.get('/nba' , async (req, res) => {
+
+//   var axios = require('axios');
+  
+//   var config = {
+//     method: 'GET',
+//     url: 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
+//     headers: {
+//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+//     },
+//     params: {
+//       "oddsFormat": "american",
+//       "markets": "h2h,spreads,totals",
+//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+//       "sports": "upcoming",
+//     }
+//   };
+//   axios(config)
+//   .then(function (response) {
+//     // console.log(JSON.stringify(response.data));
+//     res.render('pages/Sports/nba', {events: response.data.slice(0, 15)});
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// });
+
+// -----------------------------------------------------------------------------------------------------------
+
+
+
+
 
 app.get('/nba' , async (req, res) => {
   res.render('pages/Sports/nba');
