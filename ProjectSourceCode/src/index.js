@@ -178,14 +178,11 @@ app.get('/home' , async (req, res) => {
 });
 // -------------------------------------  ROUTE FOR ABOUT ----------------------------------------------
 
-app.get('/about', (req, res) => {
-  if (!req.session.user) {
-    // Redirect to login page
-    return res.redirect('/login');
-  }
+aapp.use('/resource/', express.static(path.join(__dirname, 'resource')));
 
-  console.log('openening about page')
-  res.render('pages/about');
+app.get('/about', (req, res) => {
+  console.log('Opening about page')
+  res.render('pages/about', { images: ['/img/yurifung.jpg','/resource/img/yurifung.jpg','../../resource/img/yurifung.jpg']});
 });
 // ---------------------------------- NFL ---------------------------------------------------------------------
 
