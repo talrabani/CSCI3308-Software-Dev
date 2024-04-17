@@ -262,9 +262,9 @@ app.get('/ufc' , async (req, res) => {
 
 // -----------------------------------------------NBA---------------------------------------------------------
 
-app.get('/nba' , async (req, res) => {
-    res.render('pages/Sports/nba');
-});
+// app.get('/nba' , async (req, res) => {
+//     res.render('pages/Sports/nba');
+// });
 
 
 // app.get('/nba' , async (req, res) => {
