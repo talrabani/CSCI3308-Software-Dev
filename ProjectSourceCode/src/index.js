@@ -264,7 +264,6 @@ app.get('/ufc' , async (req, res) => {
 
 app.get('/nba' , async (req, res) => {
     res.render('pages/Sports/nba');
-
 });
 
 
