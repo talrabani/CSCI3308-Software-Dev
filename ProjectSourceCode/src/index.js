@@ -178,12 +178,49 @@ app.get('/home' , async (req, res) => {
 });
 // -------------------------------------  ROUTE FOR ABOUT ----------------------------------------------
 
-app.use('/resource/', express.static(path.join(__dirname, 'resource')));
+// app.use('/resource/', express.static(path.join(__dirname, 'resource')));
 
+// app.get('/about', (req, res) => {
+//   console.log('Opening about page')
+//   res.render('pages/about', { images: ['/img/yurifung.jpg','/resource/img/yurifung.jpg','../../resource/img/yurifung.jpg']});
+// });
+
+
+
+// Serve static files from the 'resource' directory
+app.use("/resources",express.static(path.join(__dirname, 'resource')));
+
+// Define route for the '/about' page
 app.get('/about', (req, res) => {
-  console.log('Opening about page')
-  res.render('pages/about', { images: ['/img/yurifung.jpg','/resource/img/yurifung.jpg','../../resource/img/yurifung.jpg']});
+  console.log('Opening about page');
+  // Pass an array of image paths to the Handlebars template
+  // res.render('pages/about', {
+  //   images: [
+  //     '/img/rileymei.jpg',
+  //     '/img/yurifung.jpg',
+  //     // Add paths for other images if needed
+  //   ]
+  // });
+    res.render('pages/about', { 
+      images: [
+        'https://media.licdn.com/dms/image/D5603AQHY4U2MmD35hg/profile-displayphoto-shrink_800_800/0/1711482138961?e=2147483647&v=beta&t=N43M7l9f3tsz_f-D7BE08vtRAKMGxPsaNZcNzxMp6CI',
+        'https://media.licdn.com/dms/image/C5603AQEGTJvp_niqCQ/profile-displayphoto-shrink_200_200/0/1662247464003?e=2147483647&v=beta&t=bM8TTrQBytKJZi2N-wBdqLGo-m3GR1eAbfdqZc-iM_w',
+        'https://media.licdn.com/dms/image/C4D03AQFzu7y9zhO29A/profile-displayphoto-shrink_200_200/0/1642311954305?e=2147483647&v=beta&t=ivd1fuGpZF9KU0BbIzmVa1S3lo2l8DyRzX94cACtvkg',
+        'https://media.licdn.com/dms/image/D4E03AQHtTMFIgqcz4A/profile-displayphoto-shrink_200_200/0/1701419718076?e=2147483647&v=beta&t=0mG_Z5-DSD0_uija3-nhbnNjlr-12utPemPOJXkTZ0I',
+        'https://media.licdn.com/dms/image/D5635AQHYtCix-ktOpg/profile-framedphoto-shrink_800_800/0/1670401080783?e=1714003200&v=beta&t=LrRUgZ6f5M5Io1MqySqIHMAtEJEJ9UCpS8qSPAGlTYQ',] 
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
 // ---------------------------------- NFL ---------------------------------------------------------------------
 
 app.get('/nfl' , async (req, res) => {
