@@ -178,7 +178,7 @@ app.get('/home' , async (req, res) => {
 });
 // -------------------------------------  ROUTE FOR ABOUT ----------------------------------------------
 
-aapp.use('/resource/', express.static(path.join(__dirname, 'resource')));
+app.use('/resource/', express.static(path.join(__dirname, 'resource')));
 
 app.get('/about', (req, res) => {
   console.log('Opening about page')
