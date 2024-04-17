@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #86c5f6;
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  h1 {
+    color: #173f74;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #000;
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+
+  .card {
+    background: #bcddf2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 3%;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.75rem;
+    color: #173f74;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Grid */
+  @media(max-width: 700px) {
+    .card {
+      width: 100%;
+    }   
+  }
+  #self_image {
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  img{
+    width: 100px;
+    height: 100px;
+  }
+</style>
+</head>
+<body style="overflow-y: auto;">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">The Project</h1>
+                <p>
+                    This project was created as part of the CSCI 3308 course, as a product of all of our shared interest in sports. SportSphere is a web application that allows users to 
+                    track their bets on the outcomes of sporting events. While you cannot directly bet on our website, you can see your past bets and their outcomes, your total profit/loss,
+                    and your total number of bets. Our tech stack includes Node.js, Express, Handlebars, and PostgreSQL, plus Docker for containerization.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">The Team</h1>
+                <p>
+                    The team behind SportSphere is: Riley Mei (Full Stack), Yuri Fung (RESTful API Engineering), Sophie Crawshaw (Frontend), Scott Davis (Backend), and Tal Rabani (Full Stack).
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Riley Mei</h1>
+                        <p>
+                            Full Stack Developer<br>
+                            <a href="https://linkedin.com/in/riley-mei">LinkedIn</a>
+                        </p>
+                        <div>
+                            <img id="self_image" src="/resource/img/rileymei.jpg" alt="Riley Mei's Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Yuri Fung</h1>
+                        <p>
+                            RESTful API Engineer<br>
+                            <a href="https://www.linkedin.com/in/yuri-m-fung/">LinkedIn</a>
+                        </p>
+                        <img  id="self_image" src="../../resources/img/yurifung.jpg" alt="Yuri Fung's Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Sophie Crawshaw</h1>
+                        <p>
+                            Frontend Developer<br>
+                            <a href="https://www.linkedin.com/in/sophia-crawshaw-8aa62322b/">LinkedIn</a>
+                        </p>
+                        <img  id="self_image" src="../../resources/img/sophiacrawford.jpg" alt="Sophia Crawshaw's Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Scott Davis</h1>
+                        <p>
+                            Frontend Developer<br>
+                            <a href="https://www.linkedin.com/in/scott-davis33/">LinkedIn</a>
+                        </p>
+                        <img  id="self_image" src="../../resources/img/scottdavis.jpg" alt="Scott Davis's Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Tal Rabani</h1>
+                        <p>
+                            Frontend Developer<br>
+                            <a href="https://www.linkedin.com/in/tal-rabani-60b01b2a3/">LinkedIn</a>
+                        </p>
+                        <img  id="self_image" src="../../resources/img/talrabani.jpg" alt="Tal Rabani's Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

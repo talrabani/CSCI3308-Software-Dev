@@ -8,6 +8,10 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const bcrypt = require('bcrypt'); //  To hash passwords
 
+
+// Define the directory where your static files are located
+
+
 // -------------------------------------  APP CONFIG   ----------------------------------------------
 
 // create `ExpressHandlebars` instance and configure the layouts and partials dir.
@@ -35,7 +39,8 @@ app.use(
     extended: true,
   })
 );
-
+const publicDirectoryPath = path.join(__dirname, 'src', 'resources');
+app.use(express.static(publicDirectoryPath));
 // -------------------------------------  DB CONFIG AND CONNECT   ---------------------------------------
 const dbConfig = {
   host: 'db',
@@ -171,7 +176,12 @@ app.get('/home' , async (req, res) => {
 
   res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports, win_rate });
 });
+// -------------------------------------  ROUTE FOR ABOUT ----------------------------------------------
 
+app.get('/about', (req, res) => {
+  console.log('openening about page')
+  res.render('pages/about');
+});
 // ---------------------------------- NFL ---------------------------------------------------------------------
 
 app.get('/nfl' , async (req, res) => {
