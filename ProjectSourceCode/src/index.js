@@ -179,6 +179,11 @@ app.get('/home' , async (req, res) => {
 // -------------------------------------  ROUTE FOR ABOUT ----------------------------------------------
 
 app.get('/about', (req, res) => {
+  if (!req.session.user) {
+    // Redirect to login page
+    return res.redirect('/login');
+  }
+
   console.log('openening about page')
   res.render('pages/about');
 });
@@ -190,6 +195,10 @@ app.get('/nfl' , async (req, res) => {
 });
 
 // app.get('/nfl' , async (req, res) => {
+  // if (!req.session.user) {
+  //   // Redirect to login page
+  //   return res.redirect('/login');
+  // }
 
 //   var axios = require('axios');
   
@@ -232,6 +241,11 @@ app.get('/ufc' , async (req, res) => {
 
 // app.get('/ufc' , async (req, res) => {
 
+// if (!req.session.user) {
+//   // Redirect to login page
+//   return res.redirect('/login');
+// }
+
 //   var axios = require('axios');
   
 //   var config = {
@@ -262,12 +276,17 @@ app.get('/ufc' , async (req, res) => {
 
 // -----------------------------------------------NBA---------------------------------------------------------
 
-// app.get('/nba' , async (req, res) => {
-//     res.render('pages/Sports/nba');
-// });
+app.get('/nba' , async (req, res) => {
+    res.render('pages/Sports/nba');
+});
 
 
 // app.get('/nba' , async (req, res) => {
+
+  // if (!req.session.user) {
+  //   // Redirect to login page
+  //   return res.redirect('/login');
+  // }
 
 //   var axios = require('axios');
   
@@ -301,9 +320,6 @@ app.get('/ufc' , async (req, res) => {
 
 
 
-app.get('/nba' , async (req, res) => {
-  res.render('pages/Sports/nba');
-});
 
 // -------------------------------------  ROUTES for bets.hbs   ----------------------------------------------
 app.get('/bets', async (req, res) => {
@@ -404,14 +420,8 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 
-// -------------------------------------  MMA GET REQUEST   ----------------------------------------------
-
-app.get('/mma-api', (req, res) => {
 
 
-
-
-});
 
 
 
