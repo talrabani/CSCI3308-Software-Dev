@@ -16,7 +16,7 @@
 
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #86c5f6;
+    background-color: #E9E9EB;
     color: #fff;
     line-height: 1.6;
     padding: 20px;
@@ -62,7 +62,7 @@
     margin-bottom: 0.5rem; /* Adjust spacing */
     font-weight: bold; /* Optional: makes text bolder */
     
-    color: #173f74;
+    color: #ef4b4c;
   }
 
   .features {
@@ -77,7 +77,7 @@
     position: relative;
     width: 300px; /* Minimum width so they don't get too small */
     min-height: 200px;
-    background: #bcddf2;
+    background: #fff;
     border-radius: 10px; /* Rounded corners for aesthetics */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow for depth */
     text-align: center; /* Center text */
@@ -88,9 +88,9 @@
     top: 0;
     width: 300px;
     height: 75px;
-    background: #173f74;
+    background: #3d619b;
     font-size: 1.75rem; /* Larger heading size */
-    color: #FFD700; /* Gold color for emphasis */
+    color: #fff; /* Gold color for emphasis */
     margin-bottom: 1rem; /* Adjust spacing */
     display: flex;
     justify-content: center;
@@ -124,9 +124,9 @@
   }
   .grid-item {
     padding: 20px;
-    border: 3px solid #027BCE;
+    border: 3px solid #ef4b4c;
     text-align: center;
-    background-color: #bcddf2;
+    background-color: #fff;
   }
   .grid-item h2{
     color:#173f74;
@@ -178,7 +178,7 @@
 </section>
 
 <div>
-  <h2 class="text-center mb-4" style="padding-top: 10px; color:#173f74; "><strong>Top Stats</strong></h2>
+  <h2 class="text-center mb-4" style="padding-top: 10px; color:#3d619b; "><strong>Top Stats</strong></h2>
 </div>
 
   <div class="grid-container">
@@ -200,7 +200,7 @@
   </div>
   <div class="grid-item">
     <h2>Top Sports</h2>
-    <p class="grid-text">{{this.sport_name}}: ${{this.total_profit}}</p>
+    <p class="grid-text">{{top_sport.sport_name}}: ${{top_sport.total_profit}}</p>
   </div>
   <div class="grid-item">
     <h2>Win Rate</h2>

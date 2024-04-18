@@ -8,8 +8,8 @@
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #fff;
+    background-color: #3d619b;
+    color: #3d619b;
     background-size: cover;
     background-position: bottom;
   }
@@ -20,10 +20,10 @@
   }
 
   .form-container, .history-container {
-    background: rgba(82, 82, 82, 0.801);
+    background-color: #E9E9EB;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   table {
@@ -32,7 +32,8 @@
   }
 
   table, th, td {
-    border: 1px solid #007bff;
+    border: 1px solid #3d619b;
+    margin-bottom: 40px;
   }
 
   th, td {
@@ -41,15 +42,11 @@
   }
 
   th {
-    background-color: #0077B6;
-  }
-
-  tr:nth-child(even) {
-    background-color: #0077B6;
+    background-color: #c7c7c7;
   }
 
   .btn {
-    background-color: #FFD700;
+    background-color: #ffda5f;
     color: #121212;
     border: none;
     padding: 10px 20px;
@@ -58,7 +55,7 @@
   }
 
   .btn:hover {
-    background-color: #ffc107;
+    background-color: #ffda5f;
   }
 
   label {
@@ -85,7 +82,7 @@
 }
 
   .lost {
-  background-color: #FF6347; /* tomato red */
+  background-color: #ef4b4c; /* tomato red */
 }
 
 </style>
@@ -94,7 +91,7 @@
 
 <div class="container">
   <div class="form-container">
-    <h2>Add Past Bet</h2>
+    <h2 style="color: #ef4b4c">Add Past Bet</h2>
     <form id="bet-form" method="POST" action="/bets">
 
       <div class="mb-3">
@@ -154,7 +151,7 @@
         <th>Profit / Loss</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody style="color: #fff">
       {{#each bets}}
         <tr class="{{rowClass this.profit}}">
           <td>{{formatDate this.datetime}}</td>
