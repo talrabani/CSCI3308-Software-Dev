@@ -171,7 +171,7 @@ app.get('/home' , async (req, res) => {
   const monthly_profit = (await db.one('SELECT SUM(profit) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).sum;
   const monthly_bets = (await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND datetime > NOW() - INTERVAL \'30 days\'', [req.session.user.username])).count;
 
-  const top_sports = await db.any('SELECT sport_name, SUM(profit) as total_profit FROM bets JOIN sports ON bets.sport_id = sports.sport_id WHERE username = $1 GROUP BY sport_name ORDER BY total_profit DESC LIMIT 3', [req.session.user.username]);
+  const top_sports = await db.one('SELECT sport_name, SUM(profit) as total_profit FROM bets JOIN sports ON bets.sport_id = sports.sport_id WHERE username = $1 GROUP BY sport_name ORDER BY total_profit DESC LIMIT 1', [req.session.user.username]);
   const win_rate = ((await db.one('SELECT COUNT(*) FROM bets WHERE username = $1 AND profit > 0', [req.session.user.username])).count / all_time_bets)*100;
 
   res.render('pages/home', { username,all_time_profit, all_time_bets, monthly_profit, monthly_bets, top_sports, win_rate });
