@@ -2,9 +2,13 @@
 https://docs.google.com/document/d/1MtwvpkzfjD31VwNBhTXJU4-z_FJjoSXAP1RlE8WL408/edit
 
 
-4/3/24: Had a meeting to plan out about project discussion board. We assigned ourselves, discussed each story points, and wrote epics.
+4/3/24: 
+Week 1 meeting
+Had a meeting to plan out about project discussion board. We assigned ourselves, discussed each story points, and wrote epics.
 
-4/8/24 1:00: We are in the project right now:
+4/8/24 1:00: 
+Week 2 meeting
+We are in the project right now:
 We have whole skeleton/idea/repository/files setup
 We are working on the beginning login/registration 
 Stuck: Trying to pass test cases
@@ -64,3 +68,19 @@ Actual data structure is finalized.
 Build project to end to end. 
 
 Communicate and work in smaller groups 
+
+
+4/19/24:
+Week 4 meeting
+Meeting Cancelled
+
+4/22/24:
+Week 4 Meeting 
+Showed our website to TA 
+
+Website is sports betting tracker
+Went through and showed us our API, home page, betting page.
+Our API shows the upcoming events, bets, teams, etc.
+
+Leaderboard feature?
+Community based feature for each sport
