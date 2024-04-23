@@ -28,3 +28,13 @@ CREATE TABLE bets (
     FOREIGN KEY (broker_id) REFERENCES brokers(broker_id),
     FOREIGN KEY (username) REFERENCES users(username)
 );
+
+CREATE TABLE user_chats (
+    chat_id SERIAL PRIMARY KEY,
+    forum VARCHAR(50),
+    username VARCHAR(50),
+    message TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+

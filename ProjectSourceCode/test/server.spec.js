@@ -124,3 +124,37 @@ describe('Home', () => {
 
 
 // ********************************************************************************
+const { Pool } = require('pg');
+
+// Create a PostgreSQL connection pool
+const pool = new Pool({
+  user: 'your_username',
+  host: 'your_host',
+  database: 'your_database',
+  password: 'your_password',
+  port: 5432, // Default PostgreSQL port
+});
+
+// Function to check if a message has been saved
+async function checkMessageSaved(messageContent) {
+  try {
+    // Perform a SELECT query to retrieve the message
+    const query = {
+      text: 'SELECT * FROM user_chats WHERE message = $1',
+      values: [messageContent],
+    };
+    const result = await pool.query(query);
+
+    // Check if any rows are returned
+    if (result.rows.length > 0) {
+      console.log('Message saved successfully');
+    } else {
+      console.log('Message not found in the database');
+    }
+  } catch (error) {
+    console.error('Error checking message:', error);
+  }
+}
+
+// Call the function with the message content you want to check
+checkMessageSaved('Your message content');
