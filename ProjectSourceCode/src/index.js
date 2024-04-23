@@ -476,8 +476,9 @@ app.get('/community', async (req, res) => {
   }
 
   const username = req.session.user.username;
-  const FootballMessages = await db.query('SELECT username, message FROM user_chats WHERE forum = $1', ['football-chat']);
-  const BasketballMessages = await db.query('SELECT username, message FROM user_chats WHERE forum = $1', ['basketball-chat']);
+  const FootballMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['football-chat']);
+  const BasketballMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['basketball-chat']);
+  const UFCMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['ufc-chat']);
 
   res.render('pages/community', {FootballMessages, BasketballMessages, username });
 });

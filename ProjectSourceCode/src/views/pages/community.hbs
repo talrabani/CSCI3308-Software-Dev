@@ -45,6 +45,7 @@
         }
         .username{
             font-weight: bold;
+            padding-right: 1px;
         }
         .like-dislike {
             position: absolute; /* Add this line to make the buttons absolute positioned */
@@ -56,7 +57,7 @@
             cursor: pointer;
         }
         .message-time{
-            right: 40px;
+            right: 20px;
             padding: 5px 10px;
             position: absolute;
         }
@@ -135,6 +136,7 @@
     <a href="#" onclick="showChat('general')">General Chat</a>
     <a href="#" onclick="showChat('football')">Football Forum</a>
     <a href="#" onclick="showChat('basketball')">Basketball Forum</a>
+    <a href="#" onclick="showChat('ufc')">UFC Forum</a>
     <!-- Add more options as needed -->
 </div>
 
@@ -144,7 +146,8 @@
         <h2>Football Chat</h2>
         {{#each FootballMessages}}
         <div class="chat-message">
-            <span class="username">{{this.username}}</span>: 
+            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
+            <span class="username">{{this.username}}</span> : 
             <span class="message-text">{{this.message}}</span>
         </div>
         {{/each}}
@@ -155,7 +158,20 @@
         <h2>Basketball Chat</h2>
         {{#each BasketballMessages}}
         <div class="chat-message">
-            <span class="username">{{this.username}}</span>: 
+            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
+            <span class="username">{{this.username}} </span> : 
+            <span class="message-text"> {{this.message}}</span>
+        </div>
+        {{/each}}
+    </div>
+
+    <div id="ufc-chat" class="chat-box hidden">
+        <!-- UFC chat messages will be displayed here -->
+        <h2>UFC Chat</h2>
+        {{#each UFCMessages}}
+        <div class="chat-message">
+            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
+            <span class="username">{{this.username}}</span> : 
             <span class="message-text">{{this.message}}</span>
         </div>
         {{/each}}
@@ -189,7 +205,11 @@
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
-        var timeString = hours + ':' + minutes;
+        var ampm = hours >= 12 ? 'PM' : 'AM'; 
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var timeString = hours + ':' + minutes + ' ' + ampm;
 
         if (message !== '') {
             var selectedChatBox = document.querySelector('.chat-box:not(.hidden)');
@@ -219,7 +239,7 @@
             xhr.send(JSON.stringify({ username: username, forum: selectedChatBox.id, message: message, timestamp: currentTime}));
         }
     }
-
+    
     function toggleLikeDislike(button) {
         // Toggle between like and dislike
         if (button.textContent === 'Like') {
