@@ -470,28 +470,26 @@ app.get('/logout', (req, res) => {
 
 // -------------------------------------  ROUTE for community.hbs   ----------------------------------------------
 
-// app.get('/community', (req, res) => {
-//   res.render('pages/community');
-// })
 app.get('/community', async (req, res) => {
   if (!req.session.user) {
       return res.redirect('/login');
   }
 
   const username = req.session.user.username;
-  const Messages = await db.query('SELECT username, message FROM user_chats');
+  const FootballMessages = await db.query('SELECT username, message FROM user_chats WHERE forum = $1', ['football-chat']);
+  const BasketballMessages = await db.query('SELECT username, message FROM user_chats WHERE forum = $1', ['basketball-chat']);
 
-  res.render('pages/community', { Messages, username });
+  res.render('pages/community', {FootballMessages, BasketballMessages, username });
 });
 
 
   // Express route to handle saving messages
 app.post('/saveMessage', async (req, res) => {
-  const { username, message, timestamp } = req.body;
+  const { username, message, forum, timestamp } = req.body;
 
   try {
       // Insert the message into the database
-      await db.query('INSERT INTO user_chats (username, message, timestamp) VALUES ($1, $2, $3)', [username, message, timestamp]);
+      await db.query('INSERT INTO user_chats (username, message, forum, timestamp) VALUES ($1, $2, $3, $4)', [username, message, forum, timestamp]);
       res.sendStatus(200);
   } catch (error) {
       console.error('Error saving message:', error);

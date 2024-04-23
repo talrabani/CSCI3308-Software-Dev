@@ -142,7 +142,7 @@
     <div id="football-chat" class="chat-box">
         <!-- Football chat messages will be displayed here -->
         <h2>Football Chat</h2>
-        {{#each Messages}}
+        {{#each FootballMessages}}
         <div class="chat-message">
             <span class="username">{{this.username}}</span>: 
             <span class="message-text">{{this.message}}</span>
@@ -153,7 +153,7 @@
     <div id="basketball-chat" class="chat-box hidden">
         <!-- Basketball chat messages will be displayed here -->
         <h2>Basketball Chat</h2>
-        {{#each Messages}}
+        {{#each BasketballMessages}}
         <div class="chat-message">
             <span class="username">{{this.username}}</span>: 
             <span class="message-text">{{this.message}}</span>
@@ -193,10 +193,11 @@
 
         if (message !== '') {
             var selectedChatBox = document.querySelector('.chat-box:not(.hidden)');
+            console.log(selectedChatBox);
             
             var newMessage = document.createElement('div');
             newMessage.className = 'chat-message';
-            newMessage.innerHTML = '<div class="message-details"><span class="username">' + username + ':</span> ' + 
+            newMessage.innerHTML = '<div class="message-details"><span class="username">' + username + ': </span> ' + 
                             '<span class="message-text">' + message + '</span></div>' +
                             '<div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>' +
                             '<span class="message-time">' + timeString + '</span>';
@@ -215,7 +216,7 @@
                     console.log('Message saved successfully');
                 }
             };
-            xhr.send(JSON.stringify({ username: username, forum: selectedChatBox.id, message: message, timestamp: currentTime.toISOString() }));
+            xhr.send(JSON.stringify({ username: username, forum: selectedChatBox.id, message: message, timestamp: currentTime}));
         }
     }
 
