@@ -183,7 +183,7 @@
   <h2 class="text-center mb-4" style="padding-top: 10px; color:#3d619b; "><strong>Top Stats</strong></h2>
 </div>
 
-  {{#eq all_time_bets 0}}
+  {{#gt all_time_bets 0}}
   <div class="grid-container">
     <div class="grid-item">
       <h2>Profit - Last 30 Days</h2>
@@ -233,7 +233,7 @@
     max-width: 800px;
   }
   </style>
-{{/eq}}
+{{/gt}}
 
 </section>
 

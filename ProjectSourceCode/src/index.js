@@ -431,8 +431,8 @@ hbs.handlebars.registerHelper('rowClass', function(profit) {
   return profit > 0 ? 'won' : 'lost';
 });
 
-hbs.handlebars.registerHelper('eq', function(a, b, options) {
-  if (a === b) {
+hbs.handlebars.registerHelper('gt', function(a, b, options) {
+  if (a > b) {
     return options.fn(this);
   }
   return options.inverse(this);
