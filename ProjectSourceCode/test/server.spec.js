@@ -30,13 +30,13 @@ describe('Server!', () => {
 // *********************** TODO: WRITE 2 UNIT TESTCASES **************************
 
 describe('Testing Add User API', () => {
-  it('positive : /register', done => {
+  it('Positive : /register', done => {
     chai
       .request(server)
       .post('/register')
       .send({username: 'John Doe',  password: 'johndoe', email: 'johndoe@gmail.com', dob: '0001-01-01'})
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(200);
         // expect(res.body.message).to.equals('Success');
         done();
       });
@@ -47,11 +47,23 @@ describe('Testing Add User API', () => {
       .post('/register')
       .send({username: '',  password: 'notapass', email: 'notemail@gmail.com', dob: '01-01-0001'})
       .end((err, res) => {
-        expect(res).to.have.status(302);
+        expect(res).to.have.status(406);
         // expect(res.body.message).to.equals('Invalid input');
         done();
       });
   });
+  // it('Negative : /register. Checking Invalid Mail', done => {
+  //   chai
+  //     .request(server)
+  //     .post('/register')
+  //     .send({username: 'John Doe',  password: 'johndoe', email: 'johndoegmail.com', dob: '0001-01-01'})
+  //     .end((err, res) => {
+  //       expect(res).to.have.status(406);
+  //       // expect(res.body.message).to.equals('Invalid input');
+  //       done();
+  //     });
+  // });
+  
 });
 // describe('Testing Add User API', () => {
 //   it('positive : /register', done => {

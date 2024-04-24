@@ -67,20 +67,18 @@ app.get('/register', (req, res) => {
   res.render('pages/register');
 })
 // Register
-
-
 app.post('/register', async (req, res) => {
   const { username, password, dob } = req.body;
 
   // Check if username, password, or dob is empty
   if (!username || !password || !dob) {
-    return res.status(302).render('pages/register', { message: 'Username, password, and date of birth are required.' });
+    return res.status(406).render('pages/register', { message: 'Username, password, and date of birth are required.' });
   }
 
   // Check if dob is in the correct format (YYYY-MM-DD)
   const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!dobRegex.test(dob)) {
-    return res.status(302).render('pages/register', { message: 'Date of birth must be in the format YYYY-MM-DD.' });
+    return res.status(406).render('pages/register', { message: 'Date of birth must be in the format YYYY-MM-DD.' });
   }
 
   //hash the password using bcrypt library
@@ -89,12 +87,12 @@ app.post('/register', async (req, res) => {
           const hash = await bcrypt.hash(req.body.password, 10);
           await db.none('INSERT INTO users (username, password, dob) VALUES ($1, $2, $3)', [req.body.username, hash, req.body.dob]);
           console.log("Registered User")
-          res.redirect(400, '/login');
+            res.status(200).redirect('/login');
         }
     catch(err){
       console.error('Error registering user:', err);
       //redirect if registration fails
-      res.status(302).render('pages/register', { message: 'Error Registering User' });
+      res.status(406).render('pages/register', { message: 'Error Registering User' });
     }
 });
   const user = {
