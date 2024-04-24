@@ -183,32 +183,57 @@
   <h2 class="text-center mb-4" style="padding-top: 10px; color:#3d619b; "><strong>Top Stats</strong></h2>
 </div>
 
+  {{#eq all_time_bets 0}}
   <div class="grid-container">
-  <div class="grid-item">
-    <h2>Profit - Last 30 Days</h2>
-     <p class="grid-text"> {{monthly_profit}}</p>
+    <div class="grid-item">
+      <h2>Profit - Last 30 Days</h2>
+      <p class="grid-text"> {{monthly_profit}}</p>
+    </div>
+    <div class="grid-item">
+      <h2># of Bets Placed - Last 30 days</h2>
+      <p class="grid-text">{{monthly_bets}}</p>
+    </div>
+    <div class="grid-item">
+      <h2># of All Time Bets</h2>
+      <p class="grid-text">{{all_time_bets}}</p>
+    </div>
+    <div class="grid-item">
+      <h2>All Time Profit</h2>
+      <p class="grid-text">${{all_time_profit}}</p>
+    </div>
+    <div class="grid-item">
+      <h2>Top Sports</h2>
+      <p class="grid-text">{{top_sports.sport_name}}: ${{top_sports.total_profit}}</p>
+    </div>
+    <div class="grid-item">
+      <h2>Win Rate</h2>
+      <p class="grid-text">{{win_rate}}%</p>
+    </div>
   </div>
-  <div class="grid-item">
-    <h2># of Bets Placed - Last 30 days</h2>
-    <p class="grid-text">{{monthly_bets}}</p>
+{{else}}
+  <div class="center-card">
+    <a href="/bets">Track a bet to see statistics!</a>
   </div>
-  <div class="grid-item">
-    <h2># of All Time Bets</h2>
-    <p class="grid-text">{{all_time_bets}}</p>
-  </div>
-  <div class="grid-item">
-    <h2>All Time Profit</h2>
-    <p class="grid-text">${{all_time_profit}}</p>
-  </div>
-  <div class="grid-item">
-    <h2>Top Sports</h2>
-    <p class="grid-text">{{top_sports.sport_name}}: ${{top_sports.total_profit}}</p>
-  </div>
-  <div class="grid-item">
-    <h2>Win Rate</h2>
-    <p class="grid-text">{{win_rate}}%</p>
-  </div>
-</div>
+
+  <style>
+  .center-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+  }
+  </style>
+{{/eq}}
 
 </section>
 
