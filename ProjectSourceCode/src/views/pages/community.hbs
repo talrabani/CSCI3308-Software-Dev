@@ -64,6 +64,7 @@
         
         /* This is  the css for the message type box */
         .chat-message {
+            left:10px;
             margin-bottom: 10px;
             display: flex; 
             align-items: center;
@@ -149,6 +150,7 @@
             <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
             <span class="username">{{this.username}}</span> : 
             <span class="message-text">{{this.message}}</span>
+            <span class="message-time">{{this.timestamp}}</span>
         </div>
         {{/each}}
     </div>

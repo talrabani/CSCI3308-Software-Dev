@@ -478,16 +478,16 @@ app.get('/community', async (req, res) => {
   const BasketballMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['basketball-chat']);
   const UFCMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['ufc-chat']);
 
-  res.render('pages/community', {FootballMessages, BasketballMessages, username });
+  res.render('pages/community', {FootballMessages, BasketballMessages, UFCMessages, username });
 });
 
 
-  // Express route to handle saving messages
+  // route to handle saving messages
 app.post('/saveMessage', async (req, res) => {
   const { username, message, forum, timestamp } = req.body;
 
   try {
-      // Insert the message into the database
+      // Insert message into database
       await db.query('INSERT INTO user_chats (username, message, forum, timestamp) VALUES ($1, $2, $3, $4)', [username, message, forum, timestamp]);
       res.sendStatus(200);
   } catch (error) {
