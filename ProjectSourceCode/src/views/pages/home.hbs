@@ -76,8 +76,8 @@
   .feature-box {
     position: relative;
     width: 300px; /* Minimum width so they don't get too small */
-    min-height: 200px;
     background: #fff;
+    min-height: 75px;
     border-radius: 10px; /* Rounded corners for aesthetics */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow for depth */
     text-align: center; /* Center text */
@@ -154,7 +154,7 @@
 
 <div class="main-banner">
     <h1>WELCOME TO SPORTSPHERE, {{username}}!</h1>
-    <p style="color: #000000;">Your ultimate sports betting companion</p>
+    <p style="color: #000000; font-size: 1.2rem; font-weight: bold; text-transform: uppercase;">Your ultimate sports betting companion</p>
 </div>
 
 
@@ -163,19 +163,19 @@
         <a href="/sports" >
             <h2>Information</h2>
         </a>
-        <p class="centered-text">Find all relevant facts for your betting decisions.</p>
+        {{!-- <p class="centered-text">Find all relevant facts for your betting decisions.</p> --}}
     </div>
     <div class="feature-box">
         <a href="/bets"> 
             <h2>Track your history</h2>
         </a>
-        <p class="centered-text">Easily log your bets to keep track of your important betting statistics</p>
+        {{!-- <p class="centered-text">Easily log your bets to keep track of your important betting statistics</p> --}}
     </div>
     <div class="feature-box">
-        <a href="/nfl"> 
-            <h2>Headlines</h2>
+        <a href="/community"> 
+            <h2>Community</h2>
         </a>
-        <p class="centered-text">Find articles relevant to the sports betting scene</p>
+        {{!-- <p class="centered-text">Find articles relevant to the sports betting scene</p> --}}
     </div>
 </section>
 
