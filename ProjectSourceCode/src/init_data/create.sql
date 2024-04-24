@@ -35,6 +35,7 @@ CREATE TABLE user_chats (
     username VARCHAR(50),
     message TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    prettyTime VARCHAR(50),
     FOREIGN KEY (username) REFERENCES users(username)
 );
 
