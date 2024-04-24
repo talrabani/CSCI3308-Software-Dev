@@ -431,6 +431,13 @@ hbs.handlebars.registerHelper('rowClass', function(profit) {
   return profit > 0 ? 'won' : 'lost';
 });
 
+hbs.handlebars.registerHelper('eq', function(a, b, options) {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 
 // -------------------------------------  TEST ROUTE ----------------------------------------------
 
@@ -478,9 +485,44 @@ app.get('/community', async (req, res) => {
   const BasketballMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['basketball-chat']);
   const UFCMessages = await db.query('SELECT username, message, timestamp FROM user_chats WHERE forum = $1', ['ufc-chat']);
 
+  FootballMessages.forEach(message => {
+    message.prettyTime = formatTime(message.timestamp);
+  });
+  BasketballMessages.forEach(message => {
+    message.prettyTime = formatTime(message.timestamp);
+  });
+  UFCMessages.forEach(message => {
+    message.prettyTime = formatTime(message.timestamp);
+  });
+  
+
   res.render('pages/community', {FootballMessages, BasketballMessages, UFCMessages, username });
 });
 
+
+
+function formatTime(timestamp) {
+  // Create a new Date object from the timestamp
+  const date = new Date(timestamp);
+
+  // Get hours, minutes, and seconds from the date object
+  const hours = date.getHours() - 6;
+  const minutes = date.getMinutes();
+
+  // Determine AM or PM
+  const period = hours < 12 ? 'AM' : 'PM';
+
+  // Convert hours from 24-hour to 12-hour format
+  const hours12 = hours % 12 || 12; // Handle midnight (0) as 12
+
+  // Pad minutes and seconds with leading zeros if needed
+  const paddedMinutes = minutes < 10 ? '0' + minutes : minutes;
+
+  // Construct the formatted time string
+  const formattedTime = `${hours12}:${paddedMinutes} ${period}`;
+
+  return formattedTime;
+}
 
   // route to handle saving messages
 app.post('/saveMessage', async (req, res) => {

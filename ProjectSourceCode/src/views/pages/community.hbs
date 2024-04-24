@@ -64,9 +64,8 @@
         
         /* This is  the css for the message type box */
         .chat-message {
-            left:10px;
             margin-bottom: 10px;
-            display: flex; 
+            display: ;
             align-items: center;
         }
         .message-input {
@@ -147,10 +146,10 @@
         <h2>Football Chat</h2>
         {{#each FootballMessages}}
         <div class="chat-message">
-            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
             <span class="username">{{this.username}}</span> : 
             <span class="message-text">{{this.message}}</span>
-            <span class="message-time">{{this.timestamp}}</span>
+            <span class="like-dislike" onclick="toggleLikeDislike(this)">Like</span>
+            <span class="message-time">{{this.prettyTime}}</span>
         </div>
         {{/each}}
     </div>
@@ -160,9 +159,10 @@
         <h2>Basketball Chat</h2>
         {{#each BasketballMessages}}
         <div class="chat-message">
-            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
-            <span class="username">{{this.username}} </span> : 
-            <span class="message-text"> {{this.message}}</span>
+            <span class="username">{{this.username}}</span> : 
+            <span class="message-text">{{this.message}}</span>
+            <span class="like-dislike" onclick="toggleLikeDislike(this)">Like</span>
+            <span class="message-time">{{this.prettyTime}}</span>
         </div>
         {{/each}}
     </div>
@@ -172,9 +172,10 @@
         <h2>UFC Chat</h2>
         {{#each UFCMessages}}
         <div class="chat-message">
-            <div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>
             <span class="username">{{this.username}}</span> : 
             <span class="message-text">{{this.message}}</span>
+            <span class="like-dislike" onclick="toggleLikeDislike(this)">Like</span>
+            <span class="message-time">{{this.prettyTime}}</span>
         </div>
         {{/each}}
     </div>
@@ -219,9 +220,9 @@
             
             var newMessage = document.createElement('div');
             newMessage.className = 'chat-message';
-            newMessage.innerHTML = '<div class="message-details"><span class="username">' + username + ': </span> ' + 
-                            '<span class="message-text">' + message + '</span></div>' +
-                            '<div class="like-dislike" onclick="toggleLikeDislike(this)">Like</div>' +
+            newMessage.innerHTML = '<span class="message-details"><span class="username">' + username + ': </span> ' + 
+                            '<span class="message-text">' + message + '</span></span>' +
+                            '<span class="like-dislike" onclick="toggleLikeDislike(this)">Like</span>' +
                             '<span class="message-time">' + timeString + '</span>';
             selectedChatBox.appendChild(newMessage);
             
