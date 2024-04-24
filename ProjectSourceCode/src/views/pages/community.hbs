@@ -48,7 +48,7 @@
             padding-right: 1px;
         }
         .like-dislike {
-            position: absolute; /* Add this line to make the buttons absolute positioned */
+            position: relative; /* Add this line to make the buttons absolute positioned */
             right: 100px; /* Adjust the right spacing as needed */
             padding: 5px 10px;
             border: none;
@@ -178,7 +178,7 @@
     </div>
 
     <div class="message-input">
-        <input type="text" id="message" placeholder="Type your message...">
+            <input type="text" id="message" placeholder="Type your message..." onkeydown="if(event.keyCode===13) sendMessage('{{username}}')">
         <!-- Pass the chat type and username to the sendMessage function -->
         <button onclick="sendMessage('{{username}}')">Send</button>
     </div>
