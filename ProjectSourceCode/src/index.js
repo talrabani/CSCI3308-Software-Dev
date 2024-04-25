@@ -505,8 +505,11 @@ function formatTime(timestamp) {
   // Create a new Date object from the timestamp
   const date = new Date(timestamp);
 
+  // Convert the timestamp to Mountain Time
+  date.setHours(date.getHours() - 6);
+
   // Get hours, minutes, and seconds from the date object
-  const hours = date.getHours() - 6;
+  const hours = date.getHours();
   const minutes = date.getMinutes();
 
   // Determine AM or PM
@@ -515,7 +518,7 @@ function formatTime(timestamp) {
   // Convert hours from 24-hour to 12-hour format
   const hours12 = hours % 12 || 12; // Handle midnight (0) as 12
 
-  // Pad minutes and seconds with leading zeros if needed
+  // Pad minutes with leading zeros if needed
   const paddedMinutes = minutes < 10 ? '0' + minutes : minutes;
 
   // Construct the formatted time string
