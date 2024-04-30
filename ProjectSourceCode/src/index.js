@@ -222,10 +222,10 @@ app.get('/about', (req, res) => {
 
 // ---------------------------------- NFL ---------------------------------------------------------------------
 
-app.get('/nfl' , async (req, res) => {
+// app.get('/nfl' , async (req, res) => {
 
-  res.render('pages/Sports/nfl');
-});
+//   res.render('pages/Sports/nfl');
+// });
 
 app.get('/nfl' , async (req, res) => {
   if (!req.session.user) {
@@ -266,10 +266,10 @@ app.get('/nfl' , async (req, res) => {
 
 // ---------------------------------- UFC ---------------------------------------------------------------------
 
-app.get('/ufc' , async (req, res) => {
-  res.render('pages/Sports/ufc');
+// app.get('/ufc' , async (req, res) => {
+//   res.render('pages/Sports/ufc');
 
-});
+// });
 
 
 app.get('/ufc' , async (req, res) => {
@@ -309,9 +309,9 @@ if (!req.session.user) {
 
 // -----------------------------------------------NBA---------------------------------------------------------
 
-app.get('/nba' , async (req, res) => {
-    res.render('pages/Sports/nba');
-});
+// app.get('/nba' , async (req, res) => {
+//     res.render('pages/Sports/nba');
+// });
 
 
 app.get('/nba' , async (req, res) => {
