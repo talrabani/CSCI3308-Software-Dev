@@ -227,38 +227,38 @@ app.get('/nfl' , async (req, res) => {
   res.render('pages/Sports/nfl');
 });
 
-// app.get('/nfl' , async (req, res) => {
-//   if (!req.session.user) {
-//     // Redirect to login page
-//     return res.redirect('/login');
-//   }
+app.get('/nfl' , async (req, res) => {
+  if (!req.session.user) {
+    // Redirect to login page
+    return res.redirect('/login');
+  }
 
-//   var axios = require('axios');
+  var axios = require('axios');
   
-//   var config = {
-//     method: 'GET',
-//     url: 'https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
-//     headers: {
-//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
-//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
-//     },
-//     params: {
-//       "oddsFormat": "american",
-//       "markets": "h2h,spreads,totals",
-//       "regions": "us",
-//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
-//       "sports": "upcoming",
-//     }
-//   };
-//   axios(config)
-//   .then(function (response) {
-//     console.log(JSON.stringify(response.data));
-//     res.render('pages/Sports/nfl', {events: response.data.slice(0, 15)});
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// });
+  var config = {
+    method: 'GET',
+    url: 'https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
+    headers: {
+      'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+      'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+    },
+    params: {
+      "oddsFormat": "american",
+      "markets": "h2h,spreads,totals",
+      "regions": "us",
+      "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+      "sports": "upcoming",
+    }
+  };
+  axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+    res.render('pages/Sports/nfl', {events: response.data.slice(0, 15)});
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+});
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -272,38 +272,38 @@ app.get('/ufc' , async (req, res) => {
 });
 
 
-// app.get('/ufc' , async (req, res) => {
+app.get('/ufc' , async (req, res) => {
 
-// if (!req.session.user) {
-//   // Redirect to login page
-//   return res.redirect('/login');
-// }
+if (!req.session.user) {
+  // Redirect to login page
+  return res.redirect('/login');
+}
 
-//   var axios = require('axios');
+  var axios = require('axios');
   
-//   var config = {
-//     method: 'GET',
-//     url: 'https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds?regions=us&markets=h2h&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e&sports=upcoming',
-//     headers: {
-//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
-//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
-//     },
-//     params: {
-//       "oddsFormat": "american",
-//       "markets": "h2h",
-//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
-//       "sports": "upcoming",
-//     }
-//   };
-//   axios(config)
-//   .then(function (response) {
-//     // console.log(JSON.stringify(response.data));
-//     res.render('pages/Sports/ufc', {events: response.data.slice(0, 15)});
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// });
+  var config = {
+    method: 'GET',
+    url: 'https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds?regions=us&markets=h2h&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e&sports=upcoming',
+    headers: {
+      'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+      'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+    },
+    params: {
+      "oddsFormat": "american",
+      "markets": "h2h",
+      "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+      "sports": "upcoming",
+    }
+  };
+  axios(config)
+  .then(function (response) {
+    // console.log(JSON.stringify(response.data));
+    res.render('pages/Sports/ufc', {events: response.data.slice(0, 15)});
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+});
 
 // -----------------------------------------------------------------------------------------------------------
 
@@ -314,38 +314,38 @@ app.get('/nba' , async (req, res) => {
 });
 
 
-// app.get('/nba' , async (req, res) => {
+app.get('/nba' , async (req, res) => {
 
-//   if (!req.session.user) {
-//     // Redirect to login page
-//     return res.redirect('/login');
-//   }
+  if (!req.session.user) {
+    // Redirect to login page
+    return res.redirect('/login');
+  }
 
-//   var axios = require('axios');
+  var axios = require('axios');
   
-//   var config = {
-//     method: 'GET',
-//     url: 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
-//     headers: {
-//       'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
-//       'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
-//     },
-//     params: {
-//       "oddsFormat": "american",
-//       "markets": "h2h,spreads,totals",
-//       "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
-//       "sports": "upcoming",
-//     }
-//   };
-//   axios(config)
-//   .then(function (response) {
-//     // console.log(JSON.stringify(response.data));
-//     res.render('pages/Sports/nba', {events: response.data.slice(0, 15)});
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-// });
+  var config = {
+    method: 'GET',
+    url: 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=8783121f863fdbb3b54fcadfb710bf9e',
+    headers: {
+      'X-RapidAPI-Key': '8783121f863fdbb3b54fcadfb710bf9e',
+      'X-RapidAPI-Host': 'sports-betting-odds.p.rapidapi.com'
+    },
+    params: {
+      "oddsFormat": "american",
+      "markets": "h2h,spreads,totals",
+      "apikey": "8783121f863fdbb3b54fcadfb710bf9e",
+      "sports": "upcoming",
+    }
+  };
+  axios(config)
+  .then(function (response) {
+    // console.log(JSON.stringify(response.data));
+    res.render('pages/Sports/nba', {events: response.data.slice(0, 15)});
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+});
 
 // -----------------------------------------------------------------------------------------------------------
 
